@@ -1,0 +1,5 @@
+{
+  "extends":"./tsconfig.json",
+  "compilerOptions":{"noEmit":false,"outDir":".tmp-real-wasm","module":"ESNext","moduleResolution":"Bundler","target":"ES2022","declaration":false,"incremental":false},
+  "include":["src/lib/astrology/swiss-wasm-provider.ts","src/lib/astrology/astronomy-provider.ts","src/lib/astrology/contracts.ts"]
+}

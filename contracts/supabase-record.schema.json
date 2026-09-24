@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://astro-vega.local/schemas/supabase-chart-record.v1.json",
+  "title": "Astro Vega Supabase chart record",
+  "type": "object",
+  "required": ["schema_version", "classic_result", "modern_result", "comparison_result"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "classic_result": {"$ref": "chart-result.schema.json"},
+    "modern_result": {"$ref": "chart-result.schema.json"},
+    "comparison_result": {"$ref": "comparison-result.schema.json"}
+  }
+}

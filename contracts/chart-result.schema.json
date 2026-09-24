@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://astro-vega.local/schemas/chart-result.v1.json",
+  "title": "Astro Vega ChartResult v1",
+  "type": "object",
+  "required": ["engine", "subject", "utc", "julian_day_ut", "settings", "ascendant", "midheaven", "cusps", "points", "aspects", "declination_aspects", "scores", "lunar_phase", "warnings"],
+  "properties": {
+    "engine": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {"enum": ["vega_classic", "modern_swiss"]},
+        "name": {"type": "string"},
+        "ephemeris_requested_flag": {"type": ["integer", "null"]},
+        "ephemeris_path": {"type": ["string", "null"]},
+        "ephemeris_retflags": {"type": "object", "additionalProperties": {"type": "integer"}}
+      },
+      "additionalProperties": true
+    },
+    "subject": {
+      "type": "object",
+      "required": ["name", "date", "local_time", "utc_offset_hours", "latitude", "longitude"],
+      "properties": {
+        "name": {"type": "string"},
+        "date": {"type": "string"},
+        "local_time": {"type": "string"},
+        "utc_offset_hours": {"type": "number"},
+        "latitude": {"type": "number", "minimum": -90, "maximum": 90},
+        "longitude": {"type": "number", "minimum": -180, "maximum": 180},
+        "location_name": {"type": "string"},
+        "legacy_latitude": {"type": ["number", "null"]},
+        "legacy_longitude": {"type": ["number", "null"]},
+        "classic_hsl_hours": {"type": ["number", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "utc": {"type": "string"},
+    "julian_day_ut": {"type": "number"},
+    "settings": {"type": "object"},
+    "house_calculation": {"type": "object"},
+    "ascendant": {"type": "number"},
+    "midheaven": {"type": "number"},
+    "cusps": {"type": "array", "minItems": 12, "maxItems": 12, "items": {"type": "number"}},
+    "points": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["key", "name", "glyph", "longitude", "retrograde", "sign_index", "degree_in_sign"],
+        "properties": {
+          "key": {"type": "string"},
+          "name": {"type": "string"},
+          "glyph": {"type": "string"},
+          "longitude": {"type": "number"},
+          "declination": {"type": ["number", "null"]},
+          "speed_longitude": {"type": ["number", "null"]},
+          "retrograde": {"type": "boolean"},
+          "sign_index": {"type": "integer", "minimum": 0, "maximum": 11},
+          "degree_in_sign": {"type": "number"},
+          "house_geometric": {"type": ["integer", "null"], "minimum": 1, "maximum": 12},
+          "house_interpretive": {"type": ["integer", "null"], "minimum": 1, "maximum": 12}
+        },
+        "additionalProperties": true
+      }
+    },
+    "aspects": {"type": "array", "items": {"type": "object"}},
+    "declination_aspects": {"type": "array", "items": {"type": "object"}},
+    "scores": {"type": "object"},
+    "lunar_phase": {"type": "string"},
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

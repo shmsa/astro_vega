@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "outDir": ".math-test-dist",
+    "rootDir": "src/lib/astrology"
+  },
+  "include": [
+    "src/lib/astrology/contracts.ts",
+    "src/lib/astrology/profile.ts",
+    "src/lib/astrology/math.ts"
+  ]
+}

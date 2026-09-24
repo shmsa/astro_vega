@@ -1,0 +1,97 @@
+{
+  "project": "Astro Vega",
+  "version": "1.7-rc",
+  "purpose": "Three-profile natal chart application: Vega Classic, Modern Precision, and Comparative, preserving the validated Vega/Good Luck corpus",
+  "engines": [
+    "classic-vega",
+    "modern-swiss"
+  ],
+  "ui_modes": [
+    "classic",
+    "modern",
+    "comparative"
+  ],
+  "deployment_target": "Netlify",
+  "migration_target": "Next.js + TypeScript",
+  "must_preserve": [
+    "three consultation profiles: classic, modern, comparative",
+    "reverse-engineered golden corpus and validated constants",
+    "topocentric Polich-Page houses",
+    "mean node",
+    "mean lunar apogee",
+    "fortune ASC+Moon-Sun",
+    "aspect orbs 9/8/7/6/4",
+    "interpretive cusp orbs 10/5",
+    "classic Moshier major-body route with validated HSL/ARMC compatibility",
+    "modern Swiss Ephemeris route",
+    "dual-engine comparative output"
+  ],
+  "prototype_features": [
+    "client profiles",
+    "searchable chart history",
+    "per-engine A4 print view",
+    "portable chart ZIP export",
+    "versioned JSON contracts",
+    "golden fixtures",
+    "Next.js Supabase auth bridge"
+  ],
+  "privacy_notes": [
+    "client email/phone/notes are personal data",
+    "do not send profile fields to geocoding services",
+    "web persistence must be explicit and access-controlled"
+  ],
+  "production_stack": {
+    "hosting": "Netlify",
+    "frontend": "Next.js + TypeScript",
+    "auth": "Supabase Auth",
+    "database": "Supabase Postgres",
+    "authorization": "Supabase RLS"
+  },
+  "supabase": {
+    "migration": "supabase/migrations/001_initial_schema.sql",
+    "env_example": ".env.example",
+    "migrations": [
+      "supabase/migrations/001_initial_schema.sql",
+      "supabase/migrations/002_updated_at_triggers.sql"
+    ]
+  },
+  "contract_version": 1,
+  "web_bridge": {
+    "root": "web",
+    "auth": "magic-link scaffold",
+    "contracts": "web/src/lib/astrology/contracts.ts",
+    "profile": "web/src/lib/astrology/profile.ts",
+    "golden": "golden/*.v1.json"
+  },
+  "port_status": "final_handoff_candidate",
+  "typescript_golden_assertions": 86,
+  "typescript_profile_assertions": 11,
+  "typescript_provider_assertions": 18,
+  "astronomy_provider": "web/src/lib/astrology/swiss-wasm-provider.ts",
+  "corpus": {
+    "index": "corpus/corpus-index.v1.json",
+    "validator": "validation/validate_corpus.py",
+    "complete_cases": 1,
+    "pending_source_recovery": 1,
+    "rule": "never infer historical expected Vega values from implementation under test"
+  },
+  "corpus_status": {
+    "indexed": 5,
+    "golden_complete": 1,
+    "public_evidence_partial": 3,
+    "pending_source_recovery": 1
+  },
+  "corpus_recovery_note": "Natalia, Gabrielle and Karla are now source-backed partial Vega fixtures; Bolsonaro remains pending. Never infer missing Vega expected values from Swiss/Moshier.",
+  "validation_stage": "all deterministic/corpus/provider gates pass; real @swisseph/browser WASM, typecheck and production build must run in Antigravity after npm install",
+  "release_gate": "scripts/final_acceptance.sh",
+  "bootstrap": "scripts/antigravity_bootstrap.sh",
+  "final_status": {
+    "python_tests": "16/16 PASS",
+    "typescript_math": "86/86 PASS",
+    "three_profile_contract": "11/11 PASS",
+    "provider_contract": "18/18 PASS",
+    "corpus_validation": "PASS",
+    "real_wasm": "BLOCKED in preparation environment by npm install timeout; mandatory in Antigravity",
+    "typecheck_build": "mandatory after dependencies install"
+  }
+}

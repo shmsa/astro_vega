@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "karla_public_vega",
+  "status": "public_evidence_partial",
+  "provenance": "public_vega_report",
+  "source_url": "https://pt.scribd.com/document/745404631/Interp-Mapa-Natal-de-Karla-Cristina-Dossi-Joao-0-109732",
+  "source_product": "Vega Plus Online",
+  "birth_input": {
+    "date": "2005-03-20",
+    "time": "13:20",
+    "latitude_deg": -20.3333333333,
+    "longitude_deg": -40.3,
+    "location": "Vila Velha/ES (Brasil)",
+    "source_timezone_notation": "-03:00",
+    "utc_offset_hours": -3
+  },
+  "observed": {
+    "signs": {
+      "Sun": "Aries",
+      "Moon": "Leo",
+      "Mercury": "Aries",
+      "Venus": "Pisces",
+      "Mars": "Capricorn",
+      "Jupiter": "Libra",
+      "Saturn": "Cancer",
+      "Uranus": "Pisces",
+      "Neptune": "Aquarius",
+      "Pluto": "Sagittarius",
+      "Ascendant": "Cancer",
+      "Midheaven": "Aries"
+    },
+    "interpretive_house_transitions": [
+      {
+        "body": "Jupiter",
+        "mathematical_house": 3,
+        "interpreted_house": 4,
+        "next_cusp": 4
+      }
+    ]
+  },
+  "validation_scope": [
+    "birth_input",
+    "sign_membership",
+    "interpretive_cusp_orb_behavior"
+  ],
+  "not_available_from_source": [
+    "exact_longitudes",
+    "exact_cusps",
+    "HSL"
+  ],
+  "do_not_infer_missing_expected_values": true
+}

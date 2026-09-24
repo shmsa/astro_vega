@@ -1,0 +1,657 @@
+{
+  "generated_at": "2026-09-24T18:41:05.270Z",
+  "profiles": [
+    "vega_classic",
+    "modern_swiss",
+    "comparative"
+  ],
+  "ephemeris_source": "Swiss Ephemeris (sepl_18.se1, semo_18.se1, seas_18.se1) via Alois Treindl / jsdelivr CDN; cached locally in node_modules/.cache/swisseph-ephe/",
+  "total_checks": 70,
+  "failures_count": 0,
+  "results": [
+    {
+      "category": "Modern Longitude",
+      "item": "Sun",
+      "expected": 303.5513,
+      "actual": 303.551307,
+      "delta_arcmin": 0.0004,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Longitude",
+      "item": "Moon",
+      "expected": 142.614606,
+      "actual": 142.614452,
+      "delta_arcmin": -0.0093,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Longitude",
+      "item": "Mercury",
+      "expected": 306.783695,
+      "actual": 306.783702,
+      "delta_arcmin": 0.0005,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Longitude",
+      "item": "Venus",
+      "expected": 286.053812,
+      "actual": 286.053804,
+      "delta_arcmin": -0.0005,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Longitude",
+      "item": "Mars",
+      "expected": 32.371186,
+      "actual": 32.371153,
+      "delta_arcmin": -0.002,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Longitude",
+      "item": "Jupiter",
+      "expected": 56.109873,
+      "actual": 56.10987,
+      "delta_arcmin": -0.0002,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Longitude",
+      "item": "Saturn",
+      "expected": 278.19557,
+      "actual": 278.195553,
+      "delta_arcmin": -0.001,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Longitude",
+      "item": "Uranus",
+      "expected": 273.052576,
+      "actual": 273.052537,
+      "delta_arcmin": -0.0023,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Longitude",
+      "item": "Neptune",
+      "expected": 280.759648,
+      "actual": 280.75965,
+      "delta_arcmin": 0.0001,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Longitude",
+      "item": "Pluto",
+      "expected": 225.018874,
+      "actual": 225.018834,
+      "delta_arcmin": -0.0024,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Longitude",
+      "item": "Node",
+      "expected": 336.592901,
+      "actual": 336.592901,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Longitude",
+      "item": "Lilith",
+      "expected": 178.227909,
+      "actual": 178.227909,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Chiron Longitude",
+      "item": "Chiron",
+      "expected": 92.497091,
+      "actual": 92.497091,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Chiron Declination",
+      "item": "Chiron",
+      "expected": 16.6143,
+      "actual": 16.6143,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Declination",
+      "item": "Sun",
+      "expected": -19.362964,
+      "actual": -19.362958,
+      "delta_arcmin": 0.0004,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Declination",
+      "item": "Moon",
+      "expected": 15.042736,
+      "actual": 15.042624,
+      "delta_arcmin": -0.0068,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Declination",
+      "item": "Mercury",
+      "expected": -15.570453,
+      "actual": -15.570444,
+      "delta_arcmin": 0.0005,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Declination",
+      "item": "Venus",
+      "expected": -22.622386,
+      "actual": -22.622382,
+      "delta_arcmin": 0.0003,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Declination",
+      "item": "Mars",
+      "expected": 13.17195,
+      "actual": 13.171958,
+      "delta_arcmin": 0.0005,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Declination",
+      "item": "Jupiter",
+      "expected": 18.505431,
+      "actual": 18.505412,
+      "delta_arcmin": -0.0012,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Declination",
+      "item": "Saturn",
+      "expected": -22.492709,
+      "actual": -22.492694,
+      "delta_arcmin": 0.0009,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Declination",
+      "item": "Uranus",
+      "expected": -23.631441,
+      "actual": -23.631436,
+      "delta_arcmin": 0.0003,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Declination",
+      "item": "Neptune",
+      "expected": -22.107926,
+      "actual": -22.107933,
+      "delta_arcmin": -0.0004,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Declination",
+      "item": "Pluto",
+      "expected": -1.236786,
+      "actual": -1.236737,
+      "delta_arcmin": 0.0029,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Declination",
+      "item": "Node",
+      "expected": -9.093442,
+      "actual": -9.093442,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Declination",
+      "item": "Lilith",
+      "expected": -1.039767,
+      "actual": -1.039767,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Retrograde Flag",
+      "item": "Sun",
+      "expected": "D",
+      "actual": "D",
+      "delta_arcmin": 0,
+      "max_tolerance": 0,
+      "status": "PASS",
+      "speed": 1.016716
+    },
+    {
+      "category": "Retrograde Flag",
+      "item": "Moon",
+      "expected": "D",
+      "actual": "D",
+      "delta_arcmin": 0,
+      "max_tolerance": 0,
+      "status": "PASS",
+      "speed": 12.179056
+    },
+    {
+      "category": "Retrograde Flag",
+      "item": "Mercury",
+      "expected": "R",
+      "actual": "R",
+      "delta_arcmin": 0,
+      "max_tolerance": 0,
+      "status": "PASS",
+      "speed": -1.210581
+    },
+    {
+      "category": "Retrograde Flag",
+      "item": "Venus",
+      "expected": "D",
+      "actual": "D",
+      "delta_arcmin": 0,
+      "max_tolerance": 0,
+      "status": "PASS",
+      "speed": 1.251918
+    },
+    {
+      "category": "Retrograde Flag",
+      "item": "Mars",
+      "expected": "D",
+      "actual": "D",
+      "delta_arcmin": 0,
+      "max_tolerance": 0,
+      "status": "PASS",
+      "speed": 0.563047
+    },
+    {
+      "category": "Retrograde Flag",
+      "item": "Jupiter",
+      "expected": "D",
+      "actual": "D",
+      "delta_arcmin": 0,
+      "max_tolerance": 0,
+      "status": "PASS",
+      "speed": 0.01133
+    },
+    {
+      "category": "Retrograde Flag",
+      "item": "Saturn",
+      "expected": "D",
+      "actual": "D",
+      "delta_arcmin": 0,
+      "max_tolerance": 0,
+      "status": "PASS",
+      "speed": 0.110743
+    },
+    {
+      "category": "Retrograde Flag",
+      "item": "Uranus",
+      "expected": "D",
+      "actual": "D",
+      "delta_arcmin": 0,
+      "max_tolerance": 0,
+      "status": "PASS",
+      "speed": 0.054053
+    },
+    {
+      "category": "Retrograde Flag",
+      "item": "Neptune",
+      "expected": "D",
+      "actual": "D",
+      "delta_arcmin": 0,
+      "max_tolerance": 0,
+      "status": "PASS",
+      "speed": 0.035535
+    },
+    {
+      "category": "Retrograde Flag",
+      "item": "Pluto",
+      "expected": "D",
+      "actual": "D",
+      "delta_arcmin": 0,
+      "max_tolerance": 0,
+      "status": "PASS",
+      "speed": 0.014253
+    },
+    {
+      "category": "Retrograde Flag",
+      "item": "Node",
+      "expected": "R",
+      "actual": "R",
+      "delta_arcmin": 0,
+      "max_tolerance": 0,
+      "status": "PASS",
+      "speed": -0.052957
+    },
+    {
+      "category": "Retrograde Flag",
+      "item": "Lilith",
+      "expected": "D",
+      "actual": "D",
+      "delta_arcmin": 0,
+      "max_tolerance": 0,
+      "status": "PASS",
+      "speed": 0.110918
+    },
+    {
+      "category": "Retrograde Flag",
+      "item": "Chiron",
+      "expected": "R",
+      "actual": "R",
+      "delta_arcmin": 0,
+      "max_tolerance": 0,
+      "status": "PASS",
+      "speed": -0.052886
+    },
+    {
+      "category": "Modern Cusps",
+      "item": "Cusp 1",
+      "expected": 14.112596,
+      "actual": 14.112596,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Cusps",
+      "item": "Cusp 2",
+      "expected": 45.311091,
+      "actual": 45.311091,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Cusps",
+      "item": "Cusp 3",
+      "expected": 74.266209,
+      "actual": 74.266209,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Cusps",
+      "item": "Cusp 4",
+      "expected": 102.079597,
+      "actual": 102.079597,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Cusps",
+      "item": "Cusp 5",
+      "expected": 130.828599,
+      "actual": 130.828599,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Cusps",
+      "item": "Cusp 6",
+      "expected": 161.839368,
+      "actual": 161.839368,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Cusps",
+      "item": "Cusp 7",
+      "expected": 194.112596,
+      "actual": 194.112596,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Cusps",
+      "item": "Cusp 8",
+      "expected": 225.311091,
+      "actual": 225.311091,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Cusps",
+      "item": "Cusp 9",
+      "expected": 254.266209,
+      "actual": 254.266209,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Cusps",
+      "item": "Cusp 10",
+      "expected": 282.079597,
+      "actual": 282.079597,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Cusps",
+      "item": "Cusp 11",
+      "expected": 310.828599,
+      "actual": 310.828599,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Cusps",
+      "item": "Cusp 12",
+      "expected": 341.839368,
+      "actual": 341.839368,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Angles",
+      "item": "ASC",
+      "expected": 14.112596,
+      "actual": 14.112596,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern Angles",
+      "item": "MC",
+      "expected": 282.079597,
+      "actual": 282.079597,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic Cusps",
+      "item": "Cusp 1",
+      "expected": 14.080311,
+      "actual": 14.080311,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic Cusps",
+      "item": "Cusp 2",
+      "expected": 45.280947,
+      "actual": 45.280947,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic Cusps",
+      "item": "Cusp 3",
+      "expected": 74.238128,
+      "actual": 74.238128,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic Cusps",
+      "item": "Cusp 4",
+      "expected": 102.051643,
+      "actual": 102.051643,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic Cusps",
+      "item": "Cusp 5",
+      "expected": 130.79872,
+      "actual": 130.79872,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic Cusps",
+      "item": "Cusp 6",
+      "expected": 161.807161,
+      "actual": 161.807161,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic Cusps",
+      "item": "Cusp 7",
+      "expected": 194.080311,
+      "actual": 194.080311,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic Cusps",
+      "item": "Cusp 8",
+      "expected": 225.280947,
+      "actual": 225.280947,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic Cusps",
+      "item": "Cusp 9",
+      "expected": 254.238128,
+      "actual": 254.238128,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic Cusps",
+      "item": "Cusp 10",
+      "expected": 282.051643,
+      "actual": 282.051643,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic Cusps",
+      "item": "Cusp 11",
+      "expected": 310.79872,
+      "actual": 310.79872,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic Cusps",
+      "item": "Cusp 12",
+      "expected": 341.807161,
+      "actual": 341.807161,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic Angles",
+      "item": "ASC",
+      "expected": 14.080311,
+      "actual": 14.080311,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic Angles",
+      "item": "MC",
+      "expected": 282.051643,
+      "actual": 282.051643,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Modern ARMC",
+      "item": "ARMC",
+      "expected": 283.130221,
+      "actual": 283.130221,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic ARMC",
+      "item": "ARMC",
+      "expected": 283.1,
+      "actual": 283.1,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    },
+    {
+      "category": "Classic HSL",
+      "item": "HSL (hours)",
+      "expected": 18.873333,
+      "actual": 18.873333,
+      "delta_arcmin": 0,
+      "max_tolerance": 1.1,
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

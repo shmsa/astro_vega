@@ -1,0 +1,7 @@
+-- RLS smoke plan (execute in a test Supabase project, not production data).
+-- 1) Create test users A and B.
+-- 2) Under JWT A insert client/chart with owner_id=A.
+-- 3) Under JWT B assert SELECT/UPDATE/DELETE returns zero rows for A's records.
+-- 4) Assert B cannot INSERT owner_id=A.
+-- 5) Assert unauthenticated anon has no table CRUD privileges.
+-- This file is intentionally declarative because auth.uid() needs request JWT context.

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "id": "gabrielle_public_vega",
+  "status": "public_evidence_partial",
+  "provenance": "public_vega_report",
+  "source_url": "https://pt.scribd.com/document/829651117/Interp-Mapa-Natal-de-Gabrielle-Domingos-Felix-0100051-211013-114147",
+  "source_product": "Vega Plus Online",
+  "birth_input": {
+    "date": "1987-11-01",
+    "time": "04:30",
+    "daylight_saving": true,
+    "latitude_deg": -23.55,
+    "longitude_deg": -46.6333333333,
+    "location": "Sao Paulo/SP (Brasil)",
+    "source_timezone_notation": "-02:00",
+    "utc_offset_hours": -2
+  },
+  "observed": {
+    "interpretive_house_transitions": [
+      {
+        "body": "Uranus",
+        "mathematical_house": 3,
+        "interpreted_house": 4,
+        "next_cusp": 4
+      }
+    ]
+  },
+  "validation_scope": [
+    "birth_input",
+    "interpretive_cusp_orb_behavior"
+  ],
+  "not_available_from_source": [
+    "exact_longitudes",
+    "exact_cusps",
+    "HSL"
+  ],
+  "do_not_infer_missing_expected_values": true
+}

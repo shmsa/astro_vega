@@ -1,0 +1,5 @@
+pyswisseph>=2.10
+pytest>=8.0
+geopy>=2.4
+# Optional but recommended for automatic timezone-from-coordinates worldwide:
+# timezonefinder>=6.5

@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+web/node_modules/
+.venv/
+
+# Build & test compilation artifacts
+.next/
+web/.next/
+web/.math-test-dist/
+web/.tmp-provider-test/
+web/.tmp-real-wasm/
+*.tsbuildinfo
+web/tsconfig.tsbuildinfo
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# OS / Editor
+.DS_Store

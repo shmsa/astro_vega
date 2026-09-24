@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://astro-vega.local/schemas/comparison-result.v1.json",
+  "title": "Astro Vega ComparisonResult v1",
+  "type": "object",
+  "required": ["subject", "classic_engine", "modern_engine", "points", "cusps", "aspect_changes", "scores_equal", "lunar_phase_equal"],
+  "properties": {
+    "subject": {"type": "object"},
+    "classic_engine": {"type": "object"},
+    "modern_engine": {"type": "object"},
+    "points": {"type": "object"},
+    "cusps": {"type": "array", "minItems": 12, "maxItems": 12},
+    "aspect_changes": {
+      "type": "object",
+      "required": ["classic_only", "modern_only", "same_count"],
+      "properties": {
+        "classic_only": {"type": "array"},
+        "modern_only": {"type": "array"},
+        "same_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "scores_equal": {"type": "boolean"},
+    "lunar_phase_equal": {"type": "boolean"}
+  },
+  "additionalProperties": true
+}

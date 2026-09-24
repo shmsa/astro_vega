@@ -1,0 +1,377 @@
+{
+  "subject": {
+    "name": "Sergio Monte Santo Andrade",
+    "date": "1989-01-23",
+    "local_time": "10:55:00",
+    "utc_offset_hours": -3,
+    "latitude": -1.45,
+    "longitude": -48.5,
+    "location_name": "Belém/PA, Brasil",
+    "legacy_latitude": null,
+    "legacy_longitude": null,
+    "classic_hsl_hours": 18.873333333333335
+  },
+  "classic_engine": {
+    "id": "vega_classic",
+    "name": "Clássico Vega",
+    "ephemeris_requested_flag": 4,
+    "ephemeris_path": null,
+    "ephemeris_retflags": {
+      "Sun": 260,
+      "Moon": 260,
+      "Mercury": 260,
+      "Venus": 260,
+      "Mars": 260,
+      "Jupiter": 260,
+      "Saturn": 260,
+      "Uranus": 260,
+      "Neptune": 260,
+      "Pluto": 260,
+      "Node": 260,
+      "Lilith": 260
+    }
+  },
+  "modern_engine": {
+    "id": "modern_swiss",
+    "name": "Precisão Atual",
+    "ephemeris_requested_flag": 2,
+    "ephemeris_path": null,
+    "ephemeris_retflags": {
+      "Sun": 260,
+      "Moon": 260,
+      "Mercury": 260,
+      "Venus": 260,
+      "Mars": 260,
+      "Jupiter": 260,
+      "Saturn": 260,
+      "Uranus": 260,
+      "Neptune": 260,
+      "Pluto": 260,
+      "Node": 258,
+      "Lilith": 258
+    }
+  },
+  "points": {
+    "Sun": {
+      "name": "Sol",
+      "classic_longitude": 303.551300325967,
+      "modern_longitude": 303.551300325967,
+      "classic_display": "03°33' Aquário",
+      "modern_display": "03°33' Aquário",
+      "delta_degrees": 0.0,
+      "delta_arcminutes": 0.0,
+      "same_display_minute": true,
+      "classic_house": 10,
+      "modern_house": 10,
+      "classic_interpretive_house": 10,
+      "modern_interpretive_house": 10
+    },
+    "Moon": {
+      "name": "Lua",
+      "classic_longitude": 142.61460620063048,
+      "modern_longitude": 142.61460620063048,
+      "classic_display": "22°37' Leão",
+      "modern_display": "22°37' Leão",
+      "delta_degrees": 0.0,
+      "delta_arcminutes": 0.0,
+      "same_display_minute": true,
+      "classic_house": 5,
+      "modern_house": 5,
+      "classic_interpretive_house": 5,
+      "modern_interpretive_house": 5
+    },
+    "Mercury": {
+      "name": "Mercúrio",
+      "classic_longitude": 306.783694910082,
+      "modern_longitude": 306.783694910082,
+      "classic_display": "06°47' Aquário R",
+      "modern_display": "06°47' Aquário R",
+      "delta_degrees": 0.0,
+      "delta_arcminutes": 0.0,
+      "same_display_minute": true,
+      "classic_house": 10,
+      "modern_house": 10,
+      "classic_interpretive_house": 11,
+      "modern_interpretive_house": 11
+    },
+    "Venus": {
+      "name": "Vênus",
+      "classic_longitude": 286.0538122235409,
+      "modern_longitude": 286.0538122235409,
+      "classic_display": "16°03' Capricórnio",
+      "modern_display": "16°03' Capricórnio",
+      "delta_degrees": 0.0,
+      "delta_arcminutes": 0.0,
+      "same_display_minute": true,
+      "classic_house": 10,
+      "modern_house": 10,
+      "classic_interpretive_house": 10,
+      "modern_interpretive_house": 10
+    },
+    "Mars": {
+      "name": "Marte",
+      "classic_longitude": 32.3711859119591,
+      "modern_longitude": 32.3711859119591,
+      "classic_display": "02°22' Touro",
+      "modern_display": "02°22' Touro",
+      "delta_degrees": 0.0,
+      "delta_arcminutes": 0.0,
+      "same_display_minute": true,
+      "classic_house": 1,
+      "modern_house": 1,
+      "classic_interpretive_house": 1,
+      "modern_interpretive_house": 1
+    },
+    "Jupiter": {
+      "name": "Júpiter",
+      "classic_longitude": 56.10987272258979,
+      "modern_longitude": 56.10987272258979,
+      "classic_display": "26°07' Touro",
+      "modern_display": "26°07' Touro",
+      "delta_degrees": 0.0,
+      "delta_arcminutes": 0.0,
+      "same_display_minute": true,
+      "classic_house": 2,
+      "modern_house": 2,
+      "classic_interpretive_house": 2,
+      "modern_interpretive_house": 2
+    },
+    "Saturn": {
+      "name": "Saturno",
+      "classic_longitude": 278.195570389105,
+      "modern_longitude": 278.195570389105,
+      "classic_display": "08°12' Capricórnio",
+      "modern_display": "08°12' Capricórnio",
+      "delta_degrees": 0.0,
+      "delta_arcminutes": 0.0,
+      "same_display_minute": true,
+      "classic_house": 9,
+      "modern_house": 9,
+      "classic_interpretive_house": 10,
+      "modern_interpretive_house": 10
+    },
+    "Uranus": {
+      "name": "Urano",
+      "classic_longitude": 273.052575522038,
+      "modern_longitude": 273.052575522038,
+      "classic_display": "03°03' Capricórnio",
+      "modern_display": "03°03' Capricórnio",
+      "delta_degrees": 0.0,
+      "delta_arcminutes": 0.0,
+      "same_display_minute": true,
+      "classic_house": 9,
+      "modern_house": 9,
+      "classic_interpretive_house": 10,
+      "modern_interpretive_house": 10
+    },
+    "Neptune": {
+      "name": "Netuno",
+      "classic_longitude": 280.7596476716677,
+      "modern_longitude": 280.7596476716677,
+      "classic_display": "10°46' Capricórnio",
+      "modern_display": "10°46' Capricórnio",
+      "delta_degrees": 0.0,
+      "delta_arcminutes": 0.0,
+      "same_display_minute": true,
+      "classic_house": 9,
+      "modern_house": 9,
+      "classic_interpretive_house": 10,
+      "modern_interpretive_house": 10
+    },
+    "Pluto": {
+      "name": "Plutão",
+      "classic_longitude": 225.01887380091748,
+      "modern_longitude": 225.01887380091748,
+      "classic_display": "15°01' Escorpião",
+      "modern_display": "15°01' Escorpião",
+      "delta_degrees": 0.0,
+      "delta_arcminutes": 0.0,
+      "same_display_minute": true,
+      "classic_house": 7,
+      "modern_house": 7,
+      "classic_interpretive_house": 8,
+      "modern_interpretive_house": 8
+    },
+    "Node": {
+      "name": "Nodo Norte",
+      "classic_longitude": 336.59290129881356,
+      "modern_longitude": 336.59290129881356,
+      "classic_display": "06°36' Peixes R",
+      "modern_display": "06°36' Peixes R",
+      "delta_degrees": 0.0,
+      "delta_arcminutes": 0.0,
+      "same_display_minute": true,
+      "classic_house": 11,
+      "modern_house": 11,
+      "classic_interpretive_house": 11,
+      "modern_interpretive_house": 11
+    },
+    "Lilith": {
+      "name": "Lilith",
+      "classic_longitude": 178.22790928498205,
+      "modern_longitude": 178.22790928498205,
+      "classic_display": "28°14' Virgem",
+      "modern_display": "28°14' Virgem",
+      "delta_degrees": 0.0,
+      "delta_arcminutes": 0.0,
+      "same_display_minute": true,
+      "classic_house": 6,
+      "modern_house": 6,
+      "classic_interpretive_house": 6,
+      "modern_interpretive_house": 6
+    },
+    "ASC": {
+      "name": "Ascendente",
+      "classic_longitude": 14.080310889657987,
+      "modern_longitude": 14.112596478864086,
+      "classic_display": "14°05' Áries",
+      "modern_display": "14°07' Áries",
+      "delta_degrees": 0.032285589206111354,
+      "delta_arcminutes": 1.9371353523666812,
+      "same_display_minute": false,
+      "classic_house": 1,
+      "modern_house": 1,
+      "classic_interpretive_house": 1,
+      "modern_interpretive_house": 1
+    },
+    "MC": {
+      "name": "Meio do Céu",
+      "classic_longitude": 282.0516429454432,
+      "modern_longitude": 282.0795973697172,
+      "classic_display": "12°03' Capricórnio",
+      "modern_display": "12°05' Capricórnio",
+      "delta_degrees": 0.0279544242740144,
+      "delta_arcminutes": 1.677265456440864,
+      "same_display_minute": false,
+      "classic_house": 9,
+      "modern_house": 9,
+      "classic_interpretive_house": 10,
+      "modern_interpretive_house": 10
+    },
+    "Fortune": {
+      "name": "Parte da Fortuna",
+      "classic_longitude": 213.14361676432145,
+      "modern_longitude": 213.17590235352753,
+      "classic_display": "03°09' Escorpião",
+      "modern_display": "03°11' Escorpião",
+      "delta_degrees": 0.03228558920608293,
+      "delta_arcminutes": 1.937135352364976,
+      "same_display_minute": false,
+      "classic_house": 7,
+      "modern_house": 7,
+      "classic_interpretive_house": 7,
+      "modern_interpretive_house": 7
+    }
+  },
+  "cusps": [
+    {
+      "house": 1,
+      "classic": 14.080310889657987,
+      "modern": 14.112596478864086,
+      "delta_degrees": 0.032285589206111354,
+      "delta_arcminutes": 1.9371353523666812,
+      "same_display_minute": false
+    },
+    {
+      "house": 2,
+      "classic": 45.28094669994303,
+      "modern": 45.31109139406894,
+      "delta_degrees": 0.0301446941259087,
+      "delta_arcminutes": 1.808681647554522,
+      "same_display_minute": false
+    },
+    {
+      "house": 3,
+      "classic": 74.23812844033665,
+      "modern": 74.26620890874831,
+      "delta_degrees": 0.028080468411644688,
+      "delta_arcminutes": 1.6848281046986813,
+      "same_display_minute": false
+    },
+    {
+      "house": 4,
+      "classic": 102.05164294544318,
+      "modern": 102.07959736971719,
+      "delta_degrees": 0.0279544242740144,
+      "delta_arcminutes": 1.677265456440864,
+      "same_display_minute": false
+    },
+    {
+      "house": 5,
+      "classic": 130.7987197642708,
+      "modern": 130.82859866095544,
+      "delta_degrees": 0.029878896684635947,
+      "delta_arcminutes": 1.7927338010781568,
+      "same_display_minute": false
+    },
+    {
+      "house": 6,
+      "classic": 161.8071610585048,
+      "modern": 161.83936823714953,
+      "delta_degrees": 0.03220717864473954,
+      "delta_arcminutes": 1.9324307186843726,
+      "same_display_minute": false
+    },
+    {
+      "house": 7,
+      "classic": 194.080310889658,
+      "modern": 194.11259647886408,
+      "delta_degrees": 0.03228558920608293,
+      "delta_arcminutes": 1.937135352364976,
+      "same_display_minute": false
+    },
+    {
+      "house": 8,
+      "classic": 225.28094669994303,
+      "modern": 225.31109139406894,
+      "delta_degrees": 0.0301446941259087,
+      "delta_arcminutes": 1.808681647554522,
+      "same_display_minute": false
+    },
+    {
+      "house": 9,
+      "classic": 254.23812844033665,
+      "modern": 254.2662089087483,
+      "delta_degrees": 0.028080468411644688,
+      "delta_arcminutes": 1.6848281046986813,
+      "same_display_minute": false
+    },
+    {
+      "house": 10,
+      "classic": 282.0516429454432,
+      "modern": 282.0795973697172,
+      "delta_degrees": 0.0279544242740144,
+      "delta_arcminutes": 1.677265456440864,
+      "same_display_minute": false
+    },
+    {
+      "house": 11,
+      "classic": 310.7987197642708,
+      "modern": 310.82859866095544,
+      "delta_degrees": 0.029878896684635947,
+      "delta_arcminutes": 1.7927338010781568,
+      "same_display_minute": false
+    },
+    {
+      "house": 12,
+      "classic": 341.80716105850485,
+      "modern": 341.8393682371496,
+      "delta_degrees": 0.03220717864473954,
+      "delta_arcminutes": 1.9324307186843726,
+      "same_display_minute": false
+    }
+  ],
+  "aspect_changes": {
+    "classic_only": [
+      [
+        "Uranus",
+        "MC",
+        "conjunction"
+      ]
+    ],
+    "modern_only": [],
+    "same_count": 30
+  },
+  "scores_equal": true,
+  "lunar_phase_equal": true
+}

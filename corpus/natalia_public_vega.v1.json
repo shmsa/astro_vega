@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "natalia_public_vega",
+  "status": "public_evidence_partial",
+  "provenance": "public_vega_report",
+  "source_url": "https://www.horoscopovirtual.com.br/pdfs/exemplo-mapa-astral.pdf",
+  "source_product": "Vega Plus Online / Horoscopo Virtual",
+  "birth_input": {
+    "date": "1990-09-21",
+    "time": "10:31",
+    "latitude_deg": -23.55,
+    "longitude_deg": -46.6333333333,
+    "location": "Sao Paulo SP (Brasil)",
+    "source_timezone_notation": "+03:00 (Vega/Brazil convention: 3 hours west of Greenwich)",
+    "utc_offset_hours": -3
+  },
+  "observed": {
+    "signs": {
+      "Sun": "Virgo",
+      "Moon": "Libra",
+      "Mercury": "Virgo",
+      "Venus": "Virgo",
+      "Ascendant": "Sagittarius",
+      "Midheaven": "Virgo"
+    },
+    "interpretive_house_transitions": [
+      {
+        "body": "Neptune",
+        "mathematical_house": 1,
+        "interpreted_house": 2,
+        "next_cusp": 2
+      },
+      {
+        "body": "Mars",
+        "mathematical_house": 6,
+        "interpreted_house": 7,
+        "next_cusp": 7
+      }
+    ]
+  },
+  "validation_scope": [
+    "birth_input",
+    "sign_membership",
+    "interpretive_cusp_orb_behavior"
+  ],
+  "not_available_from_source": [
+    "exact_longitudes",
+    "exact_cusps",
+    "HSL"
+  ],
+  "do_not_infer_missing_expected_values": true
+}

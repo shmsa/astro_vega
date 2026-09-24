@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "project": "Astro Vega",
+  "profiles_required": [
+    "vega_classic",
+    "modern_swiss",
+    "comparative"
+  ],
+  "acceptance_policy": "Expected historical Vega values must come from preserved Vega evidence, never from the implementation under test.",
+  "cases": [
+    {
+      "id": "sergio_1989",
+      "status": "golden_complete",
+      "provenance": "primary_archive",
+      "golden": [
+        "golden/sergio_classic.v1.json",
+        "golden/sergio_modern.v1.json",
+        "golden/sergio_comparison.v1.json"
+      ],
+      "notes": "Complete machine-readable golden case currently preserved in repository. Archived HSL 18:52:24 is a compatibility input when reproducing the historical report."
+    },
+    {
+      "id": "bolsonaro_1955",
+      "status": "pending_source_recovery",
+      "provenance": "research_note",
+      "validated_rule": "Night-chart evidence supported fixed Part of Fortune formula ASC + Moon - Sun.",
+      "do_not_infer_expected_values": true
+    },
+    {
+      "id": "natalia_public_vega",
+      "status": "public_evidence_partial",
+      "provenance": "public_vega_report",
+      "validated_rule": "Used in cusp-orb reverse engineering.",
+      "do_not_infer_expected_values": true,
+      "fixture": "corpus/natalia_public_vega.v1.json"
+    },
+    {
+      "id": "gabrielle_public_vega",
+      "status": "public_evidence_partial",
+      "provenance": "public_vega_report",
+      "validated_rule": "Used in cusp-orb reverse engineering.",
+      "do_not_infer_expected_values": true,
+      "fixture": "corpus/gabrielle_public_vega.v1.json"
+    },
+    {
+      "id": "karla_public_vega",
+      "status": "public_evidence_partial",
+      "provenance": "public_vega_report",
+      "validated_rule": "Used in cusp-orb reverse engineering.",
+      "do_not_infer_expected_values": true,
+      "fixture": "corpus/karla_public_vega.v1.json"
+    }
+  ],
+  "frozen_rules": {
+    "zodiac": "tropical",
+    "houses": "Topocentric/Polich-Page",
+    "node": "mean north node",
+    "lilith": "mean lunar apogee",
+    "fortune": "ASC + Moon - Sun for day and night",
+    "aspect_orbs_degrees": {
+      "conjunction": 9,
+      "opposition": 8,
+      "trine": 7,
+      "square": 6,
+      "sextile": 4
+    },
+    "interpretive_cusp_orbs_degrees": {
+      "angular": 10,
+      "other": 5
+    },
+    "declination_orb_degrees": 1,
+    "score_weights": {
+      "Sun": 2,
+      "Moon": 2,
+      "Ascendant": 2,
+      "Midheaven": 2,
+      "Mercury_to_Pluto": 1,
+      "Node_Lilith_Chiron_Fortune": 0
+    },
+    "display_rounding": "nearest arcminute"
+  }
+}
