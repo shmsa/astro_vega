@@ -11,15 +11,17 @@
     "test:profiles": "node tests/profiles.cjs",
     "test:all": "npm run test:math && npm run test:profiles && npm run test:provider",
     "test:provider": "tsc -p tsconfig.provider-test.json && node tests/provider-contract.cjs",
-    "test:wasm-real": "tsc -p tsconfig.real-wasm.json && node tests/real-wasm-golden.mjs"
+    "test:wasm-real": "tsc -p tsconfig.real-wasm.json && node tests/real-wasm-golden.mjs",
+    "test:auth": "node --env-file=.env.local tests/auth-real.mjs",
+    "test:crud": "node --env-file=.env.local tests/crud-rls.mjs"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.7.0",
-    "@supabase/supabase-js": "^2.57.4",
-    "next": "^15.5.2",
+    "@neondatabase/auth": "0.5.0-beta",
+    "@neondatabase/serverless": "1.1.0",
+    "@swisseph/browser": "^1.3.1",
+    "next": "16.3.6",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "@swisseph/browser": "^1.3.1"
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
     "@types/node": "^22.18.0",
