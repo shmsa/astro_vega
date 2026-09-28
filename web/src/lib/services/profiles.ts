@@ -53,3 +53,74 @@ export async function getOrCreatePractitionerProfile(
     return inserted.rows[0];
   });
 }
+
+export interface UpdatePractitionerProfileInput {
+  display_name?: string;
+  professional_title?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  website?: string | null;
+  default_profile_key?: 'vega_classic' | 'modern_swiss' | 'comparative';
+  app_settings?: Record<string, unknown>;
+}
+
+export async function updatePractitionerProfile(
+  userId: string,
+  input: UpdatePractitionerProfileInput
+): Promise<PractitionerProfile> {
+  return withAuthenticatedTenant(userId, async (client: PoolClient) => {
+    const fields: string[] = [];
+    const values: unknown[] = [userId];
+    let idx = 2;
+
+    if (input.display_name !== undefined) {
+      fields.push(`display_name = $${idx++}`);
+      values.push(input.display_name);
+    }
+    if (input.professional_title !== undefined) {
+      fields.push(`professional_title = $${idx++}`);
+      values.push(input.professional_title);
+    }
+    if (input.email !== undefined) {
+      fields.push(`email = $${idx++}`);
+      values.push(input.email);
+    }
+    if (input.phone !== undefined) {
+      fields.push(`phone = $${idx++}`);
+      values.push(input.phone);
+    }
+    if (input.website !== undefined) {
+      fields.push(`website = $${idx++}`);
+      values.push(input.website);
+    }
+    if (input.default_profile_key !== undefined) {
+      fields.push(`default_profile_key = $${idx++}`);
+      values.push(input.default_profile_key);
+    }
+    if (input.app_settings !== undefined) {
+      fields.push(`app_settings = $${idx++}`);
+      values.push(JSON.stringify(input.app_settings));
+    }
+
+    if (fields.length === 0) {
+      const current = await client.query<PractitionerProfile>(
+        `SELECT * FROM public.practitioner_profiles WHERE user_id = $1`,
+        [userId]
+      );
+      return current.rows[0];
+    }
+
+    fields.push(`updated_at = CURRENT_TIMESTAMP`);
+
+    const query = `
+      UPDATE public.practitioner_profiles
+      SET ${fields.join(', ')}
+      WHERE user_id = $1
+      RETURNING *
+    `;
+
+    const res = await client.query<PractitionerProfile>(query, values);
+    return res.rows[0];
+  });
+}
+
