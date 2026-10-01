@@ -21,3 +21,6 @@ __pycache__/
 .DS_Store
 .neon
 .env.local
+.netlify/
+web/.netlify/
+web/deno.lock

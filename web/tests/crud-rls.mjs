@@ -134,24 +134,25 @@ async function run() {
     });
     console.log('  Cross-tenant access to clients strictly blocked.');
 
-    // [5/8] Creating Chart with 3 snapshots & composite foreign key
-    console.log('[5/8] Testing Chart creation with 3 validated JSONB snapshots...');
+    // [5/8] Creating Chart with 3 snapshots, tags binding & editorial update
+    console.log('[5/8] Testing Chart creation with 3 validated JSONB snapshots & tags binding...');
     let chartId;
     await withTenant(alphaId, async (client) => {
+      // 5a. Test multiple tags
       const ins = await client.query(`
         INSERT INTO public.charts (
           owner_id, client_id, chart_name, chart_type, profile_key,
           calc_date, calc_time_local, calc_timezone, calc_utc, utc_offset_minutes,
           latitude, longitude, altitude_meters, house_system, zodiac,
           julian_day_utc, classic_result, modern_result, comparison_result,
-          calculation_metadata
+          calculation_metadata, tags
         ) VALUES (
           $1, $2, 'Mapa Natal Sergio', 'natal', 'comparative',
           '1989-01-23', '10:55:00', 'America/Belem', '1989-01-23T13:55:00Z', -180,
           -1.45, -48.5, 10.0, 'T', 'tropical',
           2447550.07986, $3, $4, $5,
-          $6
-        ) RETURNING id, chart_name, profile_key;
+          $6, COALESCE($7::text[], '{}'::text[])
+        ) RETURNING id, chart_name, profile_key, tags;
       `, [
         alphaId, clientId,
         JSON.stringify(classicFixture),
@@ -164,14 +165,85 @@ async function run() {
           },
           chiron_source: 'swiss_ephemeris_se1',
           house_system: 'topocentric_polich_page',
-        })
+        }),
+        ['astrologia', 'sergio', 'golden']
       ]);
 
       chartId = ins.rows[0].id;
       assert.ok(chartId);
       assert.equal(ins.rows[0].profile_key, 'comparative');
+      assert.ok(Array.isArray(ins.rows[0].tags), 'tags must be returned as an Array');
+      assert.deepEqual(ins.rows[0].tags, ['astrologia', 'sergio', 'golden']);
+
+      // 5b. Test chart creation with empty tags []
+      const insEmptyTags = await client.query(`
+        INSERT INTO public.charts (
+          owner_id, client_id, chart_name, chart_type, profile_key,
+          calc_date, calc_time_local, calc_timezone, calc_utc, utc_offset_minutes,
+          latitude, longitude, altitude_meters, house_system, zodiac,
+          julian_day_utc, classic_result, modern_result, comparison_result,
+          calculation_metadata, tags
+        ) VALUES (
+          $1, $2, 'Mapa Sem Tags', 'natal', 'comparative',
+          '1989-01-23', '10:55:00', 'America/Belem', '1989-01-23T13:55:00Z', -180,
+          -1.45, -48.5, 10.0, 'T', 'tropical',
+          2447550.07986, $3, $4, $5,
+          $6, COALESCE($7::text[], '{}'::text[])
+        ) RETURNING id, tags;
+      `, [
+        alphaId, clientId,
+        JSON.stringify(classicFixture),
+        JSON.stringify(modernFixture),
+        JSON.stringify(comparisonFixture),
+        JSON.stringify({ test: 'empty_tags' }),
+        []
+      ]);
+      assert.ok(Array.isArray(insEmptyTags.rows[0].tags));
+      assert.deepEqual(insEmptyTags.rows[0].tags, []);
+
+      // 5c. Test chart creation with single tag ['natal']
+      const insSingleTag = await client.query(`
+        INSERT INTO public.charts (
+          owner_id, client_id, chart_name, chart_type, profile_key,
+          calc_date, calc_time_local, calc_timezone, calc_utc, utc_offset_minutes,
+          latitude, longitude, altitude_meters, house_system, zodiac,
+          julian_day_utc, classic_result, modern_result, comparison_result,
+          calculation_metadata, tags
+        ) VALUES (
+          $1, $2, 'Mapa Tag Unica', 'natal', 'comparative',
+          '1989-01-23', '10:55:00', 'America/Belem', '1989-01-23T13:55:00Z', -180,
+          -1.45, -48.5, 10.0, 'T', 'tropical',
+          2447550.07986, $3, $4, $5,
+          $6, COALESCE($7::text[], '{}'::text[])
+        ) RETURNING id, tags;
+      `, [
+        alphaId, clientId,
+        JSON.stringify(classicFixture),
+        JSON.stringify(modernFixture),
+        JSON.stringify(comparisonFixture),
+        JSON.stringify({ test: 'single_tag' }),
+        ['natal']
+      ]);
+      assert.deepEqual(insSingleTag.rows[0].tags, ['natal']);
+
+      // 5d. Test UPDATE of chart editorial fields (tags and notes)
+      const upd = await client.query(`
+        UPDATE public.charts
+        SET tags = $1::text[], notes = $2, updated_at = CURRENT_TIMESTAMP
+        WHERE id = $3 AND owner_id = $4
+        RETURNING id, tags, notes, updated_at, classic_result;
+      `, [
+        ['atualizado', 'revisado'],
+        'Observações editoriais adicionadas pelo astrólogo',
+        chartId,
+        alphaId
+      ]);
+      assert.equal(upd.rows.length, 1);
+      assert.deepEqual(upd.rows[0].tags, ['atualizado', 'revisado']);
+      assert.equal(upd.rows[0].notes, 'Observações editoriais adicionadas pelo astrólogo');
+      assert.ok(upd.rows[0].classic_result, 'Snapshots remain intact after editorial update');
     });
-    console.log(`  Chart successfully created with ID: ${chartId}`);
+    console.log(`  Chart successfully created & verified with tags: ${chartId}`);
 
     // [6/8] Cross-tenant chart creation with foreign client blocked (Composite FK)
     console.log('[6/8] Verifying composite FK multi-tenant constraint (Beta using Alpha client)...');

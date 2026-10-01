@@ -12,6 +12,9 @@
   "include": [
     "src/lib/astrology/contracts.ts",
     "src/lib/astrology/profile.ts",
-    "src/lib/astrology/math.ts"
+    "src/lib/astrology/math.ts",
+    "src/lib/astrology/format.ts",
+    "src/lib/astrology/chart-assembler.ts",
+    "src/lib/astrology/consultation-pipeline.ts"
   ]
 }

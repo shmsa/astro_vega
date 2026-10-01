@@ -6,6 +6,8 @@ import { assembleChart } from '@/lib/astrology/chart-assembler';
 import { runConsultationProfile } from '@/lib/astrology/consultation-pipeline';
 import type { ConsultationProfileId, Subject } from '@/lib/astrology/contracts';
 
+export const dynamic = 'force-dynamic';
+
 // Certifica que o environment polyfill está ativo no Node runtime
 ensureSwissWasmEnvironment();
 

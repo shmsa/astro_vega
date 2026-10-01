@@ -6,7 +6,7 @@ import type { Subject } from './contracts';
  * @swisseph/browser methods we need, so tests can inject a deterministic fake.
  */
 export interface SwissWasmRuntime {
-  init(): Promise<void>;
+  init(wasmPath?: string): Promise<void>;
   loadStandardEphemeris(): Promise<void>;
   dateToJulianDay(date: Date): number;
   calculatePosition(jd: number, body: number, flags?: number): {
@@ -116,7 +116,22 @@ async function defaultRuntimeFactory(): Promise<SwissWasmRuntime> {
   const mod = await import(moduleName);
   const Runtime = mod.SwissEphemeris;
   if (!Runtime) throw new Error('@swisseph/browser does not export SwissEphemeris');
-  return new Runtime() as SwissWasmRuntime;
+  const runtime = new Runtime() as SwissWasmRuntime;
+
+  // Wrap init to fall back to a data URI when Emscripten's fetch-based WASM
+  // loading fails (e.g. in Netlify serverless bundled environments where the
+  // fetch intercept or streaming instantiation chain breaks).
+  const origInit = runtime.init.bind(runtime);
+  runtime.init = async (wasmPath?: string) => {
+    try {
+      await origInit(wasmPath);
+    } catch {
+      const { SWISSEPH_WASM_BASE64 } = await import('./server-runtime/wasm-binary');
+      const dataUri = 'data:application/wasm;base64,' + SWISSEPH_WASM_BASE64;
+      await origInit(dataUri);
+    }
+  };
+  return runtime;
 }
 
 export class SwissWasmAstronomyProvider implements AstronomyProvider {

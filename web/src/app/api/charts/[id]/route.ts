@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth/server';
-import { getChartById, deleteChart } from '@/lib/services/charts';
+import { getChartById, deleteChart, updateChart } from '@/lib/services/charts';
 
 export async function GET(
   _request: Request,
@@ -21,6 +21,40 @@ export async function GET(
   return NextResponse.json({ chart });
 }
 
+export async function PATCH(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { data: session } = await auth.getSession();
+  if (!session?.user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const { id } = await params;
+  try {
+    const body = await request.json();
+    const chart = await updateChart(session.user.id, id, {
+      chartName: body.chartName ?? body.chart_name,
+      notes: body.notes,
+      tags: body.tags,
+    });
+    if (!chart) {
+      return NextResponse.json({ error: 'Chart not found' }, { status: 404 });
+    }
+    return NextResponse.json({ chart });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    return NextResponse.json({ error: message }, { status: 400 });
+  }
+}
+
+export async function PUT(
+  request: Request,
+  ctx: { params: Promise<{ id: string }> }
+) {
+  return PATCH(request, ctx);
+}
+
 export async function DELETE(
   _request: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -38,3 +72,4 @@ export async function DELETE(
 
   return NextResponse.json({ success: true });
 }
+

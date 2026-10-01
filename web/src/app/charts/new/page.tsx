@@ -6,6 +6,7 @@ import { Navbar } from '@/components/layout/Navbar';
 import { ChartResultViewer } from '@/components/astrology/ChartResultViewer';
 import type { ChartRecord } from '@/lib/services/charts';
 import type { ConsultationResult } from '@/lib/astrology/consultation-profiles';
+import { parseHslString } from '@/lib/astrology/format';
 
 interface ClientItem {
   id: string;
@@ -35,6 +36,8 @@ function NewChartForm() {
   const [latitude, setLatitude] = useState(-1.4558);
   const [longitude, setLongitude] = useState(-48.5039);
   const [locationName, setLocationName] = useState('Belém, PA, Brasil');
+  const [classicHsl, setClassicHsl] = useState('');
+  const [tagsInput, setTagsInput] = useState('');
   const [notes, setNotes] = useState('');
 
   const [calculating, setCalculating] = useState(false);
@@ -42,6 +45,7 @@ function NewChartForm() {
   const [error, setError] = useState('');
   const [calcResult, setCalcResult] = useState<ConsultationResult | null>(null);
   const [savedChartId, setSavedChartId] = useState<string | null>(null);
+
 
   useEffect(() => {
     async function loadData() {
@@ -95,6 +99,10 @@ function NewChartForm() {
       comparative: 'comparative',
     };
 
+    const parsedHsl = (profileKey === 'vega_classic' || profileKey === 'comparative')
+      ? parseHslString(classicHsl)
+      : null;
+
     try {
       const res = await fetch('/api/charts/calculate', {
         method: 'POST',
@@ -109,6 +117,7 @@ function NewChartForm() {
             latitude: Number(latitude),
             longitude: Number(longitude),
             location_name: locationName,
+            ...(parsedHsl != null ? { classic_hsl_hours: parsedHsl } : {}),
           },
         }),
       });
@@ -138,6 +147,29 @@ function NewChartForm() {
       return;
     }
 
+    const parsedHsl = (profileKey === 'vega_classic' || profileKey === 'comparative')
+      ? parseHslString(classicHsl)
+      : null;
+
+    const parsedTags = tagsInput
+      ? tagsInput.split(',').map(t => t.trim()).filter(Boolean)
+      : [];
+
+    const calculationMetadata: Record<string, unknown> = {
+      ephemeris_sources: {
+        classic: 'moshier_analytical',
+        modern: 'swiss_ephemeris_se1',
+      },
+      chiron_source: 'swiss_ephemeris_se1',
+      house_system: 'topocentric_polich_page',
+    };
+
+    if (parsedHsl != null) {
+      calculationMetadata.historical_hsl = classicHsl.trim();
+      calculationMetadata.historical_hsl_override = true;
+      calculationMetadata.classic_hsl_hours = parsedHsl;
+    }
+
     try {
       const payload = {
         clientId: selectedClientId || null,
@@ -152,6 +184,8 @@ function NewChartForm() {
         longitude: Number(longitude),
         julianDayUtc: targetResult.julian_day_ut,
         notes: notes || null,
+        tags: parsedTags,
+        calculationMetadata,
         classicResult: calcResult.classic_result || null,
         modernResult: calcResult.modern_result || null,
         comparisonResult: calcResult.comparison_result || null,
@@ -176,6 +210,13 @@ function NewChartForm() {
     }
   }
 
+  const parsedHsl = (profileKey === 'vega_classic' || profileKey === 'comparative')
+    ? parseHslString(classicHsl)
+    : null;
+  const parsedTags = tagsInput
+    ? tagsInput.split(',').map(t => t.trim()).filter(Boolean)
+    : [];
+
   // Prepara mock de ChartRecord para preview do ChartResultViewer
   const previewChartRecord: ChartRecord | null = calcResult ? {
     id: savedChartId || 'preview',
@@ -187,7 +228,11 @@ function NewChartForm() {
     schema_version: 1,
     engine_version: '1.7',
     profile_version: 'VEGA_GOODLUCK_PROFILE_V1',
-    calculation_metadata: {},
+    calculation_metadata: parsedHsl != null ? {
+      historical_hsl: classicHsl.trim(),
+      historical_hsl_override: true,
+      classic_hsl_hours: parsedHsl,
+    } : {},
     calc_date: date,
     calc_time_local: localTime,
     calc_timezone: timezone,
@@ -206,10 +251,11 @@ function NewChartForm() {
     modern_result: calcResult.modern_result || null,
     comparison_result: calcResult.comparison_result || null,
     notes: notes || null,
-    tags: [],
+    tags: parsedTags,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   } : null;
+
 
   return (
     <div style={{ maxWidth: 1100, margin: '32px auto', padding: '0 20px', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
@@ -346,6 +392,60 @@ function NewChartForm() {
           </div>
         </div>
 
+        {/* Opções Avançadas / Reprodução Histórica Vega */}
+        {(profileKey === 'vega_classic' || profileKey === 'comparative') && (
+          <details style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '6px', padding: '12px 16px' }}>
+            <summary style={{ cursor: 'pointer', fontWeight: 600, fontSize: '13px', color: '#1e40af' }}>
+              ⚙️ Opções avançadas / Reprodução histórica Vega
+            </summary>
+            <div style={{ marginTop: '12px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>
+                  HSL histórica (opcional)
+                </label>
+                <input
+                  type="text"
+                  value={classicHsl}
+                  onChange={e => setClassicHsl(e.target.value)}
+                  placeholder="ex: 18:52:24 (HH:MM:SS)"
+                  style={{ width: '100%', padding: '10px 12px', border: '1px solid #cbd5e1', borderRadius: '6px', boxSizing: 'border-box', fontFamily: 'monospace' }}
+                />
+                <small style={{ display: 'block', color: '#64748b', fontSize: '11px', marginTop: '4px', lineHeight: '1.4' }}>
+                  Preencha exclusivamente ao reproduzir documentos arquivados do Rommel/Vega com HSL impressa. Deixe vazio para o cálculo clássico normal pela fórmula legada.
+                </small>
+              </div>
+            </div>
+          </details>
+        )}
+
+        {/* Campos Editoriais: Tags e Notas */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>
+              Tags (separadas por vírgula)
+            </label>
+            <input
+              type="text"
+              value={tagsInput}
+              onChange={e => setTagsInput(e.target.value)}
+              placeholder="ex: natal, sergio, consulta"
+              style={{ width: '100%', padding: '10px 12px', border: '1px solid #cbd5e1', borderRadius: '6px', boxSizing: 'border-box' }}
+            />
+          </div>
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>
+              Observações Editoriais (Opcional)
+            </label>
+            <input
+              type="text"
+              value={notes}
+              onChange={e => setNotes(e.target.value)}
+              placeholder="Anotações internas do atendimento"
+              style={{ width: '100%', padding: '10px 12px', border: '1px solid #cbd5e1', borderRadius: '6px', boxSizing: 'border-box' }}
+            />
+          </div>
+        </div>
+
         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '12px' }}>
           <button
             type="submit"
@@ -364,6 +464,7 @@ function NewChartForm() {
             {calculating ? 'Calculando com Precisão Suíça...' : '⚡ Calcular Mapa'}
           </button>
         </div>
+
       </form>
 
       {/* Visualizador de Resultado com 3 Abas + Botão de Salvar */}

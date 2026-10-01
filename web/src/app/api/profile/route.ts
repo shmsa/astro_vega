@@ -12,12 +12,18 @@ export async function GET() {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const profile = await getOrCreatePractitionerProfile(session.user.id, {
-    name: session.user.name,
-    email: session.user.email,
-  });
+  try {
+    const profile = await getOrCreatePractitionerProfile(session.user.id, {
+      name: session.user.name,
+      email: session.user.email,
+    });
 
-  return NextResponse.json({ profile });
+    return NextResponse.json({ profile });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    const stack = err instanceof Error ? err.stack : undefined;
+    return NextResponse.json({ error: message, stack }, { status: 500 });
+  }
 }
 
 export async function PATCH(request: Request) {

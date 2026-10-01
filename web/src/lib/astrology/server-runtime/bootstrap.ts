@@ -7,9 +7,11 @@ let bootstrapped = false;
 export function ensureSwissWasmEnvironment() {
   if (bootstrapped) return;
 
-  if (typeof globalThis.window === 'undefined') {
-    (globalThis as unknown as { window: unknown }).window = globalThis;
-  }
+  // NOTE: Do NOT polyfill globalThis.window here. The @swisseph/browser WASM
+  // loading is handled by the data URI fallback in swiss-wasm-provider.ts.
+  // Setting globalThis.window = globalThis breaks Next.js SSR on Netlify
+  // because the server handler expects window.location to exist when window
+  // is defined.
 
   const origFetch = globalThis.fetch;
   const cacheDir = path.resolve(process.cwd(), 'node_modules', '.cache', 'swisseph-ephe');
@@ -17,9 +19,26 @@ export function ensureSwissWasmEnvironment() {
 
   globalThis.fetch = async (url: RequestInfo | URL, opts?: RequestInit) => {
     const s = String(url);
+    // Handle swisseph.wasm loading in serverless/Node environments (HTTP, file://, relative)
+    if (s.includes('swisseph.wasm')) {
+      try {
+        const localPath = path.resolve(process.cwd(), 'node_modules/@swisseph/browser/dist/swisseph.wasm');
+        const buf = await fs.readFile(localPath);
+        return new Response(buf, { status: 200, headers: { 'Content-Type': 'application/wasm' } });
+      } catch {
+        const { SWISSEPH_WASM_BASE64 } = await import('./wasm-binary');
+        const buf = Buffer.from(SWISSEPH_WASM_BASE64, 'base64');
+        return new Response(buf, { status: 200, headers: { 'Content-Type': 'application/wasm' } });
+      }
+    }
+
     if (s.startsWith('file://')) {
-      const buf = await fs.readFile(fileURLToPath(s));
-      return new Response(buf, { status: 200, headers: { 'Content-Type': 'application/wasm' } });
+      try {
+        const buf = await fs.readFile(fileURLToPath(s));
+        return new Response(buf, { status: 200, headers: { 'Content-Type': 'application/wasm' } });
+      } catch {
+        // Fall back to origFetch or ignore if file doesn't exist
+      }
     }
 
     const basename = path.basename(s);
@@ -33,8 +52,12 @@ export function ensureSwissWasmEnvironment() {
           const res = await origFetch(`${CDN_BASE}/${basename}`, opts);
           if (res.ok) {
             const ab = await res.arrayBuffer();
-            await fs.mkdir(cacheDir, { recursive: true });
-            await fs.writeFile(localCachedPath, Buffer.from(ab));
+            try {
+              await fs.mkdir(cacheDir, { recursive: true });
+              await fs.writeFile(localCachedPath, Buffer.from(ab));
+            } catch {
+              // Read-only filesystem in Lambda: continue with in-memory buffer
+            }
             return new Response(ab, { status: 200 });
           }
         } catch {

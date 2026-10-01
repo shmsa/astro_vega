@@ -2,6 +2,8 @@
 
 import React from 'react';
 import type { ChartResult } from '@/lib/astrology/contracts';
+import { formatZodiacPrecise } from '@/lib/astrology/format';
+
 
 interface NatalWheelSvgProps {
   chart: ChartResult;
@@ -82,6 +84,7 @@ export function NatalWheelSvg({ chart, size = 640 }: NatalWheelSvgProps) {
 
           return (
             <g key={`cusp-${houseNum}`}>
+              <title>{`Casa ${houseNum}: ${formatZodiacPrecise(cuspLon)} (${cuspLon.toFixed(2)}°)`}</title>
               <line
                 x1={pCenter.x}
                 y1={pCenter.y}
@@ -140,6 +143,7 @@ export function NatalWheelSvg({ chart, size = 640 }: NatalWheelSvgProps) {
 
           return (
             <g key={`planet-${key}`} transform={`translate(${ptCoords.x}, ${ptCoords.y})`}>
+              <title>{`${point.name}: ${formatZodiacPrecise(point.longitude, { retrograde: point.retrograde })}`}</title>
               <circle cx="0" cy="0" r="10" fill="#ffffff" stroke="#334155" strokeWidth="1" />
               <text
                 x="0"
@@ -173,9 +177,19 @@ export function NatalWheelSvg({ chart, size = 640 }: NatalWheelSvgProps) {
         })()}
       </svg>
 
-      <div style={{ marginTop: '12px', fontSize: '13px', color: '#64748b' }}>
-        ASC: <strong>{(chart.ascendant).toFixed(2)}°</strong> | MC: <strong>{(chart.midheaven).toFixed(2)}°</strong> | Sistema: Topocêntrico (Polich/Page)
+      <div style={{ marginTop: '14px', fontSize: '13px', color: '#334155', textAlign: 'center', lineHeight: '1.6' }}>
+        <div>
+          ASC: <strong style={{ color: '#1e293b' }}>{formatZodiacPrecise(chart.ascendant)}</strong>
+          <span style={{ color: '#94a3b8', fontSize: '11.5px', marginLeft: '4px' }}>({chart.ascendant.toFixed(2)}°)</span>
+          {' '}&bull;{' '}
+          MC: <strong style={{ color: '#1e293b' }}>{formatZodiacPrecise(chart.midheaven)}</strong>
+          <span style={{ color: '#94a3b8', fontSize: '11.5px', marginLeft: '4px' }}>({chart.midheaven.toFixed(2)}°)</span>
+        </div>
+        <div style={{ fontSize: '11.5px', color: '#64748b' }}>
+          Sistema: Topocêntrico (Polich/Page) &bull; Zodíaco: Tropical
+        </div>
       </div>
     </div>
   );
 }
+

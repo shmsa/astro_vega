@@ -4,10 +4,12 @@ let poolInstance: Pool | null = null;
 
 export function getDbPool(): Pool {
   if (!poolInstance) {
-    const connectionString = process.env.DATABASE_URL;
+    let connectionString = process.env.DATABASE_URL;
     if (!connectionString) {
       throw new Error('DATABASE_URL is not set in environment.');
     }
+    // Clean surrounding quotes if passed by deployment environments
+    connectionString = connectionString.trim().replace(/^["']|["']$/g, '');
     poolInstance = new Pool({ connectionString });
   }
   return poolInstance;

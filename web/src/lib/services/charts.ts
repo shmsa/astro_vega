@@ -125,7 +125,7 @@ export async function saveChart(
         $11, $12, $13, COALESCE($14, 0.0), 'T', 'tropical',
         $15, $16, $17,
         $18, $19, $20,
-        $21, COALESCE($22, '{}')
+        $21, COALESCE($22::text[], '{}'::text[])
       ) RETURNING *`,
       [
         userId,
@@ -149,7 +149,7 @@ export async function saveChart(
         input.modernResult ? JSON.stringify(input.modernResult) : null,
         input.comparisonResult ? JSON.stringify(input.comparisonResult) : null,
         input.notes ?? null,
-        input.tags ?? [],
+        Array.isArray(input.tags) ? input.tags : [],
       ]
     );
 
@@ -202,3 +202,57 @@ export async function deleteChart(
     return res.rowCount !== null && res.rowCount > 0;
   });
 }
+
+/**
+ * Salvaguarda 1: updateChart atualiza EXCLUSIVAMENTE campos editoriais
+ * (chart_name, notes, tags).
+ * Snapshots JSONB, entradas astronômicas, calculation_metadata,
+ * versões e dados do cálculo são estritamente imutáveis após criação.
+ */
+export interface UpdateChartEditorialInput {
+  chartName?: string;
+  notes?: string | null;
+  tags?: string[];
+}
+
+export async function updateChart(
+  userId: string,
+  chartId: string,
+  input: UpdateChartEditorialInput
+): Promise<ChartRecord | null> {
+  return withAuthenticatedTenant(userId, async (client: PoolClient) => {
+    const setClauses: string[] = [];
+    const values: unknown[] = [chartId, userId];
+    let paramIndex = 3;
+
+    if (input.chartName !== undefined) {
+      setClauses.push(`chart_name = $${paramIndex++}`);
+      values.push(input.chartName.trim());
+    }
+    if (input.notes !== undefined) {
+      setClauses.push(`notes = $${paramIndex++}`);
+      values.push(input.notes);
+    }
+    if (input.tags !== undefined) {
+      setClauses.push(`tags = $${paramIndex++}::text[]`);
+      values.push(Array.isArray(input.tags) ? input.tags : []);
+    }
+
+    if (setClauses.length === 0) {
+      return getChartById(userId, chartId);
+    }
+
+    setClauses.push('updated_at = CURRENT_TIMESTAMP');
+
+    const res = await client.query<ChartRecord>(
+      `UPDATE public.charts
+       SET ${setClauses.join(', ')}
+       WHERE id = $1 AND owner_id = $2
+       RETURNING *`,
+      values
+    );
+
+    return res.rows[0] ?? null;
+  });
+}
+
