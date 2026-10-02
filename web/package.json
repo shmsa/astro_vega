@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node -e 'require(\"fs\").rmSync(\".next/cache\", {recursive: true, force: true})' && next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "test:math": "tsc -p tsconfig.math-test.json && node tests/math-golden.cjs",
