@@ -14,7 +14,8 @@
     "test:wasm-real": "tsc -p tsconfig.real-wasm.json && node tests/real-wasm-golden.mjs",
     "test:auth": "node --env-file=.env.local tests/auth-real.mjs",
     "test:crud": "node --env-file=.env.local tests/crud-rls.mjs",
-    "test:regression": "tsc -p tsconfig.math-test.json && tsc -p tsconfig.real-wasm.json && node --env-file=.env.local tests/regression-sergio.mjs"
+    "test:regression": "tsc -p tsconfig.math-test.json && tsc -p tsconfig.real-wasm.json && node --env-file=.env.local tests/regression-sergio.mjs",
+    "test:fixed-stars": "tsc -p tsconfig.fixed-stars.json && node tests/fixed-stars-precession.cjs && node tests/fixed-stars-aspects.cjs && node tests/fixed-stars-api.cjs"
   },
   "dependencies": {
     "@neondatabase/auth": "0.5.0-beta",

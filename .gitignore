@@ -9,6 +9,7 @@ web/.next/
 web/.math-test-dist/
 web/.tmp-provider-test/
 web/.tmp-real-wasm/
+web/.tmp-fixed-stars/
 *.tsbuildinfo
 web/tsconfig.tsbuildinfo
 

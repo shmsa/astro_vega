@@ -256,3 +256,75 @@ export async function updateChart(
   });
 }
 
+// ============================================================
+// Módulos Complementares (chart_modules)
+// ============================================================
+
+export interface ChartModuleRecord {
+  id: string;
+  chart_id: string;
+  module_key: string;
+  module_version: string;
+  config: Record<string, unknown>;
+  result: Record<string, unknown>;
+  created_at: string;
+}
+
+/**
+ * Salva ou atualiza o resultado de um módulo complementar para um mapa.
+ * Usa INSERT ... ON CONFLICT DO UPDATE para upsert idempotente.
+ */
+export async function saveChartModule(
+  userId: string,
+  chart_id: string,
+  module_key: string,
+  module_version: string,
+  result: Record<string, unknown>,
+  config: Record<string, unknown> = {}
+): Promise<ChartModuleRecord> {
+  return withAuthenticatedTenant(userId, async (client: PoolClient) => {
+    // Valida que o mapa pertence ao usuário
+    const chartCheck = await client.query(
+      `SELECT id FROM public.charts WHERE id = $1 AND owner_id = $2`,
+      [chart_id, userId]
+    );
+    if (chartCheck.rows.length === 0) {
+      throw new Error('Mapa não encontrado ou não pertence ao usuário autenticado.');
+    }
+
+    const res = await client.query<ChartModuleRecord>(
+      `INSERT INTO public.chart_modules (chart_id, module_key, module_version, config, result)
+       VALUES ($1, $2, $3, $4::jsonb, $5::jsonb)
+       ON CONFLICT (chart_id, module_key) DO UPDATE
+         SET module_version = EXCLUDED.module_version,
+             config = EXCLUDED.config,
+             result = EXCLUDED.result,
+             created_at = now()
+       RETURNING *`,
+      [chart_id, module_key, module_version, JSON.stringify(config), JSON.stringify(result)]
+    );
+    return res.rows[0];
+  });
+}
+
+/**
+ * Busca o resultado de um módulo complementar para um mapa.
+ * Retorna null se o módulo ainda não foi calculado para este mapa.
+ */
+export async function getChartModule(
+  userId: string,
+  chart_id: string,
+  module_key: string
+): Promise<ChartModuleRecord | null> {
+  return withAuthenticatedTenant(userId, async (client: PoolClient) => {
+    const res = await client.query<ChartModuleRecord>(
+      `SELECT cm.* FROM public.chart_modules cm
+       JOIN public.charts c ON c.id = cm.chart_id
+       WHERE cm.chart_id = $1 AND cm.module_key = $2 AND c.owner_id = $3
+       LIMIT 1`,
+      [chart_id, module_key, userId]
+    );
+    return res.rows[0] ?? null;
+  });
+}
+

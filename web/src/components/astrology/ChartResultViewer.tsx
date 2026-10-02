@@ -6,16 +6,18 @@ import { NatalWheelSvg } from './NatalWheelSvg';
 import { AspectMatrix } from './AspectMatrix';
 import { TablesView } from './TablesView';
 import { ComparativeView } from './ComparativeView';
+import { FixedStarsView } from './FixedStarsView';
 
 interface ChartResultViewerProps {
   chartRecord: ChartRecord;
 }
 
 export function ChartResultViewer({ chartRecord }: ChartResultViewerProps) {
-  const [activeTab, setActiveTab] = useState<'classic' | 'modern' | 'comparative'>(
+  const [activeTab, setActiveTab] = useState<'classic' | 'modern' | 'comparative' | 'stars'>(
     chartRecord.profile_key === 'modern_swiss' ? 'modern' : (chartRecord.profile_key === 'vega_classic' ? 'classic' : 'comparative')
   );
   const [fullPrintMode, setFullPrintMode] = useState(false);
+
 
   const classic = chartRecord.classic_result;
   const modern = chartRecord.modern_result;
@@ -288,6 +290,23 @@ export function ChartResultViewer({ chartRecord }: ChartResultViewerProps) {
             >
               ⚖️ Comparativo
             </button>
+
+            <button
+              onClick={() => setActiveTab('stars')}
+              style={{
+                padding: '10px 20px',
+                fontSize: '14px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                border: 'none',
+                borderBottom: activeTab === 'stars' ? '3px solid #2563eb' : '3px solid transparent',
+                background: 'none',
+                color: activeTab === 'stars' ? '#2563eb' : '#64748b',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              ⭐ Estrelas Fixas
+            </button>
           </div>
 
           {/* Conteúdo da Aba Ativa */}
@@ -324,9 +343,14 @@ export function ChartResultViewer({ chartRecord }: ChartResultViewerProps) {
           {activeTab === 'comparative' && comparison && (
             <ComparativeView comparison={comparison} />
           )}
+
+          {activeTab === 'stars' && (
+            <FixedStarsView chartRecord={chartRecord} />
+          )}
         </>
       )}
     </div>
   );
 }
+
 

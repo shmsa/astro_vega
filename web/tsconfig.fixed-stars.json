@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "outDir": ".tmp-fixed-stars",
+    "rootDir": "src/lib/astrology"
+  },
+  "include": [
+    "src/lib/astrology/fixed-stars/**/*.ts",
+    "src/lib/astrology/format.ts",
+    "src/lib/astrology/math.ts"
+  ]
+}
