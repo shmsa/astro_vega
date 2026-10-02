@@ -87,10 +87,13 @@ function NewChartForm() {
     }
   }, [selectedClientId, clients]);
 
-  async function handleCalculate(e: React.FormEvent) {
+  async function handleCalculateAndSave(e: React.FormEvent, autoSave: boolean = true) {
     e.preventDefault();
     setError('');
     setCalculating(true);
+    if (autoSave) {
+      setSaving(true);
+    }
     setCalcResult(null);
 
     const profileIdMap: Record<string, 'classic' | 'modern' | 'comparative'> = {
@@ -104,6 +107,7 @@ function NewChartForm() {
       : null;
 
     try {
+      // 1. Executa o cálculo astronômico de alta precisão
       const res = await fetch('/api/charts/calculate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -127,11 +131,75 @@ function NewChartForm() {
         throw new Error(data.error || 'Falha ao calcular mapa');
       }
 
-      setCalcResult(data.result);
+      const result: ConsultationResult = data.result;
+      setCalcResult(result);
+
+      // 2. Se autoSave estiver ativo (padrão), persiste imediatamente no Neon
+      if (autoSave) {
+        const targetResult = result.classic_result || result.modern_result;
+        if (!targetResult) {
+          throw new Error('Nenhum resultado astronômico gerado para gravação.');
+        }
+
+        const parsedTags = tagsInput
+          ? tagsInput.split(',').map(t => t.trim()).filter(Boolean)
+          : [];
+
+        const calculationMetadata: Record<string, unknown> = {
+          ephemeris_sources: {
+            classic: 'moshier_analytical',
+            modern: 'swiss_ephemeris_se1',
+          },
+          chiron_source: 'swiss_ephemeris_se1',
+          house_system: 'topocentric_polich_page',
+        };
+
+        if (parsedHsl != null) {
+          calculationMetadata.historical_hsl = classicHsl.trim();
+          calculationMetadata.historical_hsl_override = true;
+          calculationMetadata.classic_hsl_hours = parsedHsl;
+        }
+
+        const payload = {
+          clientId: selectedClientId || null,
+          chartName: chartName || `Mapa Natal - ${date}`,
+          profileKey,
+          calcDate: date,
+          calcTimeLocal: localTime,
+          calcTimezone: timezone,
+          calcUtc: targetResult.utc,
+          utcOffsetMinutes: Math.round(utcOffsetHours * 60),
+          latitude: Number(latitude),
+          longitude: Number(longitude),
+          julianDayUtc: targetResult.julian_day_ut,
+          notes: notes || null,
+          tags: parsedTags,
+          calculationMetadata,
+          classicResult: result.classic_result || null,
+          modernResult: result.modern_result || null,
+          comparisonResult: result.comparison_result || null,
+        };
+
+        const saveRes = await fetch('/api/charts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        const saveData = await saveRes.json();
+        if (!saveRes.ok) {
+          throw new Error(saveData.error || 'Erro ao persistir mapa no histórico');
+        }
+
+        // Redireciona diretamente para a visualização persistida no banco
+        router.push(`/charts/${saveData.chart.id}`);
+        return;
+      }
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : String(err));
     } finally {
       setCalculating(false);
+      setSaving(false);
     }
   }
 
@@ -273,7 +341,8 @@ function NewChartForm() {
       )}
 
       {/* Formulário de Cálculo */}
-      <form onSubmit={handleCalculate} style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '24px', marginBottom: '32px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      {/* Formulário de Cálculo */}
+      <form onSubmit={(e) => handleCalculateAndSave(e, true)} style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '24px', marginBottom: '32px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
           <div>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>Vincular a Consulente (Opcional)</label>
@@ -446,32 +515,68 @@ function NewChartForm() {
           </div>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '12px' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '12px', marginTop: '12px', flexWrap: 'wrap' }}>
+          <button
+            type="button"
+            onClick={(e) => handleCalculateAndSave(e, false)}
+            disabled={calculating || saving}
+            style={{
+              padding: '12px 20px',
+              background: '#f1f5f9',
+              color: '#334155',
+              border: '1px solid #cbd5e1',
+              borderRadius: '6px',
+              cursor: (calculating || saving) ? 'not-allowed' : 'pointer',
+              fontWeight: 600,
+              fontSize: '14px'
+            }}
+          >
+            👁️ Apenas Pré-visualizar
+          </button>
+
           <button
             type="submit"
-            disabled={calculating}
+            disabled={calculating || saving}
             style={{
               padding: '12px 28px',
               background: '#2563eb',
               color: '#ffffff',
               border: 'none',
               borderRadius: '6px',
-              cursor: calculating ? 'not-allowed' : 'pointer',
+              cursor: (calculating || saving) ? 'not-allowed' : 'pointer',
               fontWeight: 700,
-              fontSize: '15px'
+              fontSize: '15px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
             }}
           >
-            {calculating ? 'Calculando com Precisão Suíça...' : '⚡ Calcular Mapa'}
+            {saving ? 'Gravando no Histórico...' : (calculating ? 'Calculando...' : '⚡ Calcular e Salvar no Histórico')}
           </button>
         </div>
 
       </form>
 
-      {/* Visualizador de Resultado com 3 Abas + Botão de Salvar */}
+      {/* Visualizador de Resultado em Modo Pré-Visualização */}
       {previewChartRecord && (
-        <div style={{ marginTop: '24px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-            <h2 style={{ fontSize: '20px', fontWeight: 700, color: '#1e293b', margin: 0 }}>Resultado do Cálculo</h2>
+        <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{
+            background: '#fef3c7',
+            border: '1px solid #f59e0b',
+            borderRadius: '8px',
+            padding: '16px 20px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: '12px'
+          }}>
+            <div>
+              <span style={{ fontWeight: 700, color: '#92400e', fontSize: '15px' }}>👁️ Pré-visualização Ativa</span>
+              <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: '#b45309' }}>
+                Este mapa está sendo exibido em memória. Para que ele apareça no seu histórico e dashboard, clique no botão ao lado.
+              </p>
+            </div>
             <button
               onClick={handleSaveChart}
               disabled={saving}
@@ -486,10 +591,11 @@ function NewChartForm() {
                 fontSize: '14px',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px'
+                gap: '8px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
               }}
             >
-              {saving ? 'Gravando no Neon...' : '💾 Salvar Mapa no Histórico'}
+              {saving ? 'Gravando no Neon...' : '💾 Salvar Mapa no Histórico Agora'}
             </button>
           </div>
 
