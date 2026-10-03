@@ -1,4 +1,10 @@
-import { Pool, PoolClient } from '@neondatabase/serverless';
+import { Pool, PoolClient, types } from '@neondatabase/serverless';
+
+// Ensure PostgreSQL date and timestamp columns are returned as deterministic strings,
+// preventing runtime errors when Date objects are rendered in React components or serialised across RSC.
+types.setTypeParser(1082, (val: string) => val); // DATE -> 'YYYY-MM-DD'
+types.setTypeParser(1114, (val: string) => val); // TIMESTAMP -> string
+types.setTypeParser(1184, (val: string) => val); // TIMESTAMPTZ -> string
 
 let poolInstance: Pool | null = null;
 

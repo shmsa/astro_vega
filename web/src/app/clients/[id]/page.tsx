@@ -66,7 +66,7 @@ export default async function ClientDetailPage({
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px', fontSize: '14px' }}>
             <div>
               <span style={{ color: '#64748b', display: 'block', fontSize: '12px' }}>Data de Nascimento</span>
-              <strong>{client.birth_date || 'Não informada'}</strong>
+              <strong>{typeof client.birth_date === 'object' && client.birth_date !== null ? (client.birth_date as any).toISOString().split('T')[0] : (client.birth_date || 'Não informada')}</strong>
             </div>
             <div>
               <span style={{ color: '#64748b', display: 'block', fontSize: '12px' }}>Hora Local</span>
@@ -119,10 +119,14 @@ export default async function ClientDetailPage({
                 </tr>
               </thead>
               <tbody>
-                {clientCharts.map(ch => (
+                {clientCharts.map(ch => {
+                  const chDate = typeof ch.calc_date === 'object' && ch.calc_date !== null
+                    ? (ch.calc_date as any).toISOString().split('T')[0]
+                    : String(ch.calc_date || '');
+                  return (
                   <tr key={ch.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
                     <td style={{ padding: '10px 12px', fontWeight: 600 }}>{ch.chart_name}</td>
-                    <td style={{ padding: '10px 12px', color: '#64748b' }}>{ch.calc_date} {ch.calc_time_local}</td>
+                    <td style={{ padding: '10px 12px', color: '#64748b' }}>{chDate} {ch.calc_time_local}</td>
                     <td style={{ padding: '10px 12px' }}>
                       <span style={{ fontSize: '12px', padding: '2px 8px', borderRadius: '4px', background: '#eff6ff', color: '#2563eb', fontWeight: 600 }}>
                         {ch.profile_key}
@@ -134,7 +138,8 @@ export default async function ClientDetailPage({
                       </Link>
                     </td>
                   </tr>
-                ))}
+                );
+                })}
               </tbody>
             </table>
           )}

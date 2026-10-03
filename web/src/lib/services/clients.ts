@@ -41,6 +41,22 @@ export type CreateClientInput = {
 
 export type UpdateClientInput = Partial<CreateClientInput>;
 
+export function normalizeClientRecord(row: any): ClientRecord {
+  if (!row) return row;
+  return {
+    ...row,
+    birth_date: row.birth_date instanceof Date
+      ? row.birth_date.toISOString().split('T')[0]
+      : (row.birth_date ? String(row.birth_date) : null),
+    created_at: row.created_at instanceof Date
+      ? row.created_at.toISOString()
+      : String(row.created_at ?? ''),
+    updated_at: row.updated_at instanceof Date
+      ? row.updated_at.toISOString()
+      : String(row.updated_at ?? ''),
+  };
+}
+
 export async function createClient(
   userId: string,
   input: CreateClientInput
@@ -78,7 +94,7 @@ export async function createClient(
         input.altitude_meters ?? 0.0,
       ]
     );
-    return res.rows[0];
+    return normalizeClientRecord(res.rows[0]);
   });
 }
 
@@ -88,7 +104,7 @@ export async function listClients(userId: string): Promise<ClientRecord[]> {
       `SELECT * FROM public.clients WHERE owner_id = $1 ORDER BY created_at DESC`,
       [userId]
     );
-    return res.rows;
+    return res.rows.map(normalizeClientRecord);
   });
 }
 
@@ -101,7 +117,7 @@ export async function getClientById(
       `SELECT * FROM public.clients WHERE id = $1 AND owner_id = $2`,
       [clientId, userId]
     );
-    return res.rows[0] ?? null;
+    return res.rows[0] ? normalizeClientRecord(res.rows[0]) : null;
   });
 }
 
@@ -152,7 +168,7 @@ export async function updateClient(
         input.altitude_meters !== undefined ? input.altitude_meters : null,
       ]
     );
-    return res.rows[0] ?? null;
+    return res.rows[0] ? normalizeClientRecord(res.rows[0]) : null;
   });
 }
 

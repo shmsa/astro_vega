@@ -23,6 +23,10 @@ export function ChartResultViewer({ chartRecord }: ChartResultViewerProps) {
   const modern = chartRecord.modern_result;
   const comparison = chartRecord.comparison_result;
 
+  const displayDate = typeof chartRecord.calc_date === 'object' && chartRecord.calc_date !== null
+    ? (chartRecord.calc_date as any).toISOString().split('T')[0]
+    : String(chartRecord.calc_date || '');
+
   function handlePrintTab() {
     setFullPrintMode(false);
     setTimeout(() => {
@@ -64,7 +68,7 @@ export function ChartResultViewer({ chartRecord }: ChartResultViewerProps) {
             {chartRecord.chart_name}
           </h1>
           <p style={{ margin: 0, fontSize: '14px', color: '#64748b' }}>
-            {chartRecord.calc_date} às {chartRecord.calc_time_local} ({chartRecord.calc_timezone}) — Lat: {chartRecord.latitude}°, Lon: {chartRecord.longitude}°
+            {displayDate} às {chartRecord.calc_time_local} ({chartRecord.calc_timezone}) — Lat: {chartRecord.latitude}°, Lon: {chartRecord.longitude}°
             {Boolean(chartRecord.calculation_metadata?.historical_hsl) && (
               <span style={{ marginLeft: '8px', color: '#92400e', fontWeight: 600 }}>
                 • HSL Histórica: {String(chartRecord.calculation_metadata.historical_hsl)}
@@ -154,7 +158,7 @@ export function ChartResultViewer({ chartRecord }: ChartResultViewerProps) {
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px', fontSize: '13px', color: '#334155' }}>
               <div><strong>Consulente / Mapa:</strong> {chartRecord.chart_name}</div>
-              <div><strong>Data e Hora:</strong> {chartRecord.calc_date} às {chartRecord.calc_time_local}</div>
+              <div><strong>Data e Hora:</strong> {displayDate} às {chartRecord.calc_time_local}</div>
               <div><strong>Fuso / UTC:</strong> {chartRecord.calc_timezone} (UTC {chartRecord.utc_offset_hours > 0 ? `+${chartRecord.utc_offset_hours}` : chartRecord.utc_offset_hours})</div>
               <div><strong>Coordenadas:</strong> Lat: {chartRecord.latitude}°, Lon: {chartRecord.longitude}°</div>
               {Boolean(chartRecord.calculation_metadata?.historical_hsl) && (

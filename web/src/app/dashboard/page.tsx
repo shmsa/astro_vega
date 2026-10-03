@@ -134,21 +134,26 @@ export default async function DashboardPage() {
               </div>
             ) : (
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                {recentCharts.map(ch => (
+                {recentCharts.map(ch => {
+                  const chDate = typeof ch.calc_date === 'object' && ch.calc_date !== null
+                    ? (ch.calc_date as any).toISOString().split('T')[0]
+                    : String(ch.calc_date || '');
+                  return (
                   <li key={ch.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', borderBottom: '1px solid #f1f5f9' }}>
                     <div>
                       <Link href={`/charts/${ch.id}`} style={{ fontWeight: 600, color: '#1e293b', textDecoration: 'none', fontSize: '14px' }}>
                         {ch.chart_name}
                       </Link>
                       <div style={{ fontSize: '12px', color: '#64748b', marginTop: '2px' }}>
-                        {ch.calc_date} {ch.calc_time_local} • <span style={{ color: '#2563eb' }}>{ch.profile_key}</span>
+                        {chDate} {ch.calc_time_local} • <span style={{ color: '#2563eb' }}>{ch.profile_key}</span>
                       </div>
                     </div>
                     <Link href={`/charts/${ch.id}`} style={{ fontSize: '13px', color: '#2563eb', textDecoration: 'none', fontWeight: 500 }}>
                       Abrir →
                     </Link>
                   </li>
-                ))}
+                );
+                })}
               </ul>
             )}
           </div>

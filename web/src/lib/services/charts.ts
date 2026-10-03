@@ -60,6 +60,28 @@ export interface SaveChartInput {
   tags?: string[];
 }
 
+export function normalizeChartRecord(row: any): ChartRecord {
+  if (!row) return row;
+  return {
+    ...row,
+    calc_date: row.calc_date instanceof Date
+      ? row.calc_date.toISOString().split('T')[0]
+      : String(row.calc_date ?? ''),
+    calc_time_local: String(row.calc_time_local ?? ''),
+    calc_timezone: String(row.calc_timezone ?? ''),
+    calc_utc: row.calc_utc instanceof Date
+      ? row.calc_utc.toISOString()
+      : String(row.calc_utc ?? ''),
+    created_at: row.created_at instanceof Date
+      ? row.created_at.toISOString()
+      : String(row.created_at ?? ''),
+    updated_at: row.updated_at instanceof Date
+      ? row.updated_at.toISOString()
+      : String(row.updated_at ?? ''),
+    tags: Array.isArray(row.tags) ? row.tags : [],
+  };
+}
+
 export async function saveChart(
   userId: string,
   input: SaveChartInput
@@ -153,7 +175,7 @@ export async function saveChart(
       ]
     );
 
-    return res.rows[0];
+    return normalizeChartRecord(res.rows[0]);
   });
 }
 
@@ -169,7 +191,16 @@ export async function listCharts(userId: string): Promise<Array<Pick<
        ORDER BY created_at DESC`,
       [userId]
     );
-    return res.rows;
+    return res.rows.map((row: any) => ({
+      ...row,
+      calc_date: row.calc_date instanceof Date
+        ? row.calc_date.toISOString().split('T')[0]
+        : String(row.calc_date ?? ''),
+      calc_time_local: String(row.calc_time_local ?? ''),
+      created_at: row.created_at instanceof Date
+        ? row.created_at.toISOString()
+        : String(row.created_at ?? ''),
+    }));
   });
 }
 
@@ -186,7 +217,7 @@ export async function getChartById(
       `SELECT * FROM public.charts WHERE id = $1 AND owner_id = $2`,
       [chartId, userId]
     );
-    return res.rows[0] ?? null;
+    return res.rows[0] ? normalizeChartRecord(res.rows[0]) : null;
   });
 }
 
@@ -252,7 +283,7 @@ export async function updateChart(
       values
     );
 
-    return res.rows[0] ?? null;
+    return res.rows[0] ? normalizeChartRecord(res.rows[0]) : null;
   });
 }
 

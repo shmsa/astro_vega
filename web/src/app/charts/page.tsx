@@ -58,7 +58,11 @@ export default async function ChartsHistoryPage() {
                 </tr>
               </thead>
               <tbody>
-                {charts.map(c => (
+                {charts.map(c => {
+                  const calcDateStr = typeof c.calc_date === 'object' && c.calc_date !== null
+                    ? (c.calc_date as any).toISOString().split('T')[0]
+                    : String(c.calc_date || '');
+                  return (
                   <tr key={c.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
                     <td style={{ padding: '12px 16px', fontWeight: 600 }}>
                       <Link href={`/charts/${c.id}`} style={{ color: '#1e293b', textDecoration: 'none' }}>
@@ -66,7 +70,7 @@ export default async function ChartsHistoryPage() {
                       </Link>
                     </td>
                     <td style={{ padding: '12px 16px', color: '#64748b' }}>
-                      {c.calc_date} {c.calc_time_local}
+                      {calcDateStr} {c.calc_time_local}
                     </td>
                     <td style={{ padding: '12px 16px' }}>
                       <span style={{ fontSize: '12px', padding: '2px 8px', borderRadius: '4px', background: '#eff6ff', color: '#2563eb', fontWeight: 600 }}>
@@ -90,7 +94,8 @@ export default async function ChartsHistoryPage() {
                       </Link>
                     </td>
                   </tr>
-                ))}
+                );
+                })}
               </tbody>
             </table>
           )}
