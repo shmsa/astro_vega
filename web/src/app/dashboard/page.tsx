@@ -53,7 +53,7 @@ export default async function DashboardPage() {
               <span style={{ fontSize: '13px', color: '#94a3b8' }}>Topocêntrico Polich-Page</span>
             </div>
             <h1 style={{ margin: '0 0 6px 0', fontSize: '26px', fontWeight: 800 }}>
-              Olá, {profile.display_name}
+              Olá, {profile?.display_name || user.name || 'Astrólogo'}
             </h1>
             <p style={{ margin: 0, fontSize: '14px', color: '#cbd5e1' }}>
               {profile.professional_title || 'Praticante de Astrologia Tradicional e Moderna'}
@@ -171,21 +171,26 @@ export default async function DashboardPage() {
               </div>
             ) : (
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                {recentClients.map(cl => (
+                {recentClients.map(cl => {
+                  const clBirthDate = typeof cl.birth_date === 'object' && cl.birth_date !== null
+                    ? (cl.birth_date as any).toISOString().split('T')[0]
+                    : String(cl.birth_date || '');
+                  return (
                   <li key={cl.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', borderBottom: '1px solid #f1f5f9' }}>
                     <div>
                       <Link href={`/clients/${cl.id}`} style={{ fontWeight: 600, color: '#1e293b', textDecoration: 'none', fontSize: '14px' }}>
                         {cl.name}
                       </Link>
                       <div style={{ fontSize: '12px', color: '#64748b', marginTop: '2px' }}>
-                        {cl.birth_city || cl.birth_date || 'Sem dados adicionais'}
+                        {cl.birth_city || clBirthDate || 'Sem dados adicionais'}
                       </div>
                     </div>
                     <Link href={`/charts/new?clientId=${cl.id}`} style={{ fontSize: '13px', color: '#2563eb', textDecoration: 'none', fontWeight: 500 }}>
                       Calcular →
                     </Link>
                   </li>
-                ))}
+                );
+                })}
               </ul>
             )}
           </div>
