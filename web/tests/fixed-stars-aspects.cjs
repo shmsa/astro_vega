@@ -26,7 +26,7 @@ function assert(cond, label) {
   assert(c !== undefined, 'T1a: Conjuncao exata Sol-Aldebaran');
   assert(c?.orb === 0, 'T1b: Orbe = 0');
   assert(c?.applying === null, 'T1c: applying = null');
-  assert(c?.orb_status === 'provisional', 'T1d: orb_status provisional');
+  assert(c?.orb_status === 'provisional / not documented in Vega manual', 'T1d: orb_status provisional / not documented in Vega manual');
   assert(c?.aspect_symbol === '☌', 'T1e: Simbolo conjuncao');
 }
 

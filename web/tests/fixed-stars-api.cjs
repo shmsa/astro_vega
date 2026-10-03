@@ -45,10 +45,12 @@ const result = computeFixedStars(2447550.0799, planets);
 assert(result.stars.length === 50, 'T7: 50 estrelas calculadas no resultado');
 assert(result.epoch_year > 1989 && result.epoch_year < 1989.1, 'T8: Epoca ~1989', `(${result.epoch_year})`);
 assert(result.module_version === '1.0.0', 'T9: Versao 1.0.0');
+assert(result.calculation_method === 'Vega-style IAU1976 reconstruction', 'T9b: calculation_method = Vega-style IAU1976 reconstruction');
 
 // Aldebaran no resultado
 const rAldebaran = result.stars.find(s => s.id === 'aldebaran');
 assert(rAldebaran !== undefined, 'T10: Aldebaran presente nas estrelas precessadas');
+assert(rAldebaran?.status === 'vega_confirmed', 'T10b: Aldebaran status = vega_confirmed');
 assert(typeof rAldebaran?.longitude === 'number', 'T11: Longitude numerica calculada');
 assert(rAldebaran?.longitude_zodiac.includes('Gêmeos'), 'T12: Longitude zodiacal contem Gemeos', `(${rAldebaran?.longitude_zodiac})`);
 

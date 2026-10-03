@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import type { ChartRecord } from '@/lib/services/charts';
-import type { FixedStarsResult, FixedStarPosition, FixedStarAspect } from '@/lib/astrology/fixed-stars/types';
+import type { FixedStarsResult, FixedStarPosition, FixedStarAspect, StarProvenanceStatus } from '@/lib/astrology/fixed-stars/types';
 
 interface FixedStarsViewProps {
   chartRecord: ChartRecord;
@@ -16,6 +16,7 @@ export function FixedStarsView({ chartRecord }: FixedStarsViewProps) {
   // Filtros e ordenação
   const [search, setSearch] = useState('');
   const [constellationFilter, setConstellationFilter] = useState('ALL');
+  const [provenanceFilter, setProvenanceFilter] = useState<'ALL' | StarProvenanceStatus>('ALL');
   const [sortOrder, setSortOrder] = useState<'zodiac' | 'alpha'>('zodiac');
   const [aspectsOnly, setAspectsOnly] = useState(false);
 
@@ -35,7 +36,6 @@ export function FixedStarsView({ chartRecord }: FixedStarsViewProps) {
     }
     return map;
   }, [chart]);
-
 
   // Carrega os dados na montagem
   useEffect(() => {
@@ -145,6 +145,11 @@ export function FixedStarsView({ chartRecord }: FixedStarsViewProps) {
       list = list.filter((s) => s.constellation === constellationFilter);
     }
 
+    // Filtro de proveniência Vega
+    if (provenanceFilter !== 'ALL') {
+      list = list.filter((s) => s.status === provenanceFilter);
+    }
+
     // Filtro apenas com aspectos
     if (aspectsOnly) {
       list = list.filter((s) => starAspectsMap.has(s.id));
@@ -158,7 +163,7 @@ export function FixedStarsView({ chartRecord }: FixedStarsViewProps) {
     }
 
     return list;
-  }, [data, search, constellationFilter, aspectsOnly, sortOrder, starAspectsMap]);
+  }, [data, search, constellationFilter, provenanceFilter, aspectsOnly, sortOrder, starAspectsMap]);
 
   if (loading) {
     return (
@@ -172,7 +177,7 @@ export function FixedStarsView({ chartRecord }: FixedStarsViewProps) {
       }}>
         <div style={{ fontSize: '24px', marginBottom: '12px' }}>⏳</div>
         <div style={{ fontWeight: 600 }}>Calculando posições e precessão das estrelas fixas...</div>
-        <div style={{ fontSize: '13px', marginTop: '6px' }}>Algoritmo IAU 1976 para a época exata do mapa.</div>
+        <div style={{ fontSize: '13px', marginTop: '6px' }}>Método: Vega-style IAU1976 reconstruction para a época exata do mapa.</div>
       </div>
     );
   }
@@ -210,12 +215,13 @@ export function FixedStarsView({ chartRecord }: FixedStarsViewProps) {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
               <span style={{ fontSize: '20px' }}>⭐</span>
               <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 700, color: '#f1f5f9' }}>
-                Módulo de Estrelas Fixas — Vega 7 Revival
+                Módulo de Estrelas Fixas (Vega-style IAU1976 reconstruction)
               </h3>
             </div>
-            <p style={{ margin: 0, fontSize: '13.5px', color: '#94a3b8', maxWidth: '640px', lineHeight: 1.5 }}>
-              Posições corrigidas pela <strong>precessão dos equinócios (IAU 1976)</strong> para a data do mapa (Época: {data.epoch_year}).
-              Aspectos considerados conforme o padrão do Vega 7: Conjunção (☌), Quadratura (□) e Oposição (☍).
+            <p style={{ margin: 0, fontSize: '13.5px', color: '#94a3b8', maxWidth: '680px', lineHeight: 1.5 }}>
+              Posições calculadas pela <strong>precessão analítica dos equinócios (IAU 1976)</strong> para a data do mapa (Época: {data.epoch_year}).
+              Método histórico reconstituído conforme o Vega 7 (não classificado como <em>Vega exact</em>).
+              Aspectos tratados: Conjunção (☌), Quadratura (□) e Oposição (☍).
             </p>
           </div>
 
@@ -250,7 +256,7 @@ export function FixedStarsView({ chartRecord }: FixedStarsViewProps) {
               textAlign: 'center'
             }}>
               <div style={{ fontSize: '11px', color: '#cbd5e1', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Orbe Padrão</div>
-              <div style={{ fontSize: '16px', fontWeight: 700, color: '#a78bfa' }}>1°00' (Provisório)</div>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: '#a78bfa' }}>1°00' (Provisório)</div>
             </div>
           </div>
         </div>
@@ -272,7 +278,7 @@ export function FixedStarsView({ chartRecord }: FixedStarsViewProps) {
               Aspectos Estrelas × Planetas ({data.aspects.length})
             </h4>
             <span style={{ fontSize: '12px', color: '#64748b' }}>
-              Apenas ☌ (0°), □ (90°) e ☍ (180°) com os 10 planetas natais principais
+              Apenas ☌ (0°), □ (90°) e ☍ (180°) com os 10 corpos natais clássicos
             </span>
           </div>
           <span style={{
@@ -284,7 +290,7 @@ export function FixedStarsView({ chartRecord }: FixedStarsViewProps) {
             fontWeight: 600,
             border: '1px solid #fde68a'
           }}>
-            Orbe: Provisório (1°00') — Vega 7
+            Orbe: 1°00' (Provisório — não documentado no manual Vega)
           </span>
         </div>
 
@@ -301,7 +307,7 @@ export function FixedStarsView({ chartRecord }: FixedStarsViewProps) {
                   <th style={{ padding: '10px 12px', fontWeight: 600 }}>Aspecto</th>
                   <th style={{ padding: '10px 12px', fontWeight: 600 }}>Planeta</th>
                   <th style={{ padding: '10px 12px', fontWeight: 600 }}>Orbe</th>
-                  <th style={{ padding: '10px 12px', fontWeight: 600 }}>Status</th>
+                  <th style={{ padding: '10px 12px', fontWeight: 600 }}>Validação</th>
                 </tr>
               </thead>
               <tbody>
@@ -361,9 +367,14 @@ export function FixedStarsView({ chartRecord }: FixedStarsViewProps) {
         gap: '16px'
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
-          <h4 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#1e293b' }}>
-            Catálogo e Efemérides Precessadas ({filteredStars.length} de {data.stars.length})
-          </h4>
+          <div>
+            <h4 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#1e293b' }}>
+              Catálogo e Efemérides Precessadas ({filteredStars.length} de {data.stars.length})
+            </h4>
+            <span style={{ fontSize: '12px', color: '#64748b' }}>
+              Método: Vega-style IAU1976 reconstruction (Lieske et al., 1977)
+            </span>
+          </div>
 
           {/* Barra de Filtros */}
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -377,9 +388,27 @@ export function FixedStarsView({ chartRecord }: FixedStarsViewProps) {
                 borderRadius: '6px',
                 border: '1px solid #cbd5e1',
                 fontSize: '13px',
-                width: '180px'
+                width: '170px'
               }}
             />
+
+            <select
+              value={provenanceFilter}
+              onChange={(e) => setProvenanceFilter(e.target.value as 'ALL' | StarProvenanceStatus)}
+              style={{
+                padding: '6px 10px',
+                borderRadius: '6px',
+                border: '1px solid #cbd5e1',
+                fontSize: '13px',
+                background: '#fff',
+                color: '#334155'
+              }}
+            >
+              <option value="ALL">Todas as Proveniências</option>
+              <option value="vega_confirmed">Vega Confirmada (12)</option>
+              <option value="vega_probable">Vega Provável (18)</option>
+              <option value="reconstructed_from_vega_sources">Fontes Vega (20)</option>
+            </select>
 
             <select
               value={constellationFilter}
@@ -432,17 +461,24 @@ export function FixedStarsView({ chartRecord }: FixedStarsViewProps) {
             <thead>
               <tr style={{ background: '#f8fafc', borderBottom: '2px solid #e2e8f0', color: '#475569' }}>
                 <th style={{ padding: '10px 12px', fontWeight: 600 }}>Estrela</th>
+                <th style={{ padding: '10px 12px', fontWeight: 600 }}>Proveniência</th>
                 <th style={{ padding: '10px 12px', fontWeight: 600 }}>Constelação</th>
                 <th style={{ padding: '10px 12px', fontWeight: 600 }}>Longitude ({data.epoch_year})</th>
                 <th style={{ padding: '10px 12px', fontWeight: 600 }}>Latitude</th>
                 <th style={{ padding: '10px 12px', fontWeight: 600 }}>Aspectos</th>
-                <th style={{ padding: '10px 12px', fontWeight: 600, width: '40%' }}>Natureza e Influência Astrológica</th>
+                <th style={{ padding: '10px 12px', fontWeight: 600, width: '38%' }}>Natureza e Influência Astrológica</th>
               </tr>
             </thead>
             <tbody>
               {filteredStars.map((s, idx) => {
                 const aspects = starAspectsMap.get(s.id) || [];
                 const hasAspects = aspects.length > 0;
+
+                const provenanceBadge = {
+                  vega_confirmed: { label: 'Vega Confirmada', bg: '#dcfce7', color: '#166534', border: '#bbf7d0' },
+                  vega_probable: { label: 'Vega Provável', bg: '#e0f2fe', color: '#0369a1', border: '#bae6fd' },
+                  reconstructed_from_vega_sources: { label: 'Fontes Vega', bg: '#f1f5f9', color: '#475569', border: '#e2e8f0' },
+                }[s.status || 'reconstructed_from_vega_sources'];
 
                 return (
                   <tr
@@ -454,6 +490,20 @@ export function FixedStarsView({ chartRecord }: FixedStarsViewProps) {
                   >
                     <td style={{ padding: '10px 12px' }}>
                       <div style={{ fontWeight: 700, color: '#1e293b' }}>{s.name}</div>
+                    </td>
+                    <td style={{ padding: '10px 12px', whiteSpace: 'nowrap' }}>
+                      <span style={{
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        background: provenanceBadge.bg,
+                        color: provenanceBadge.color,
+                        padding: '2px 7px',
+                        borderRadius: '4px',
+                        border: `1px solid ${provenanceBadge.border}`,
+                        display: 'inline-block'
+                      }}>
+                        {provenanceBadge.label}
+                      </span>
                     </td>
                     <td style={{ padding: '10px 12px', color: '#475569' }}>
                       {s.constellation}

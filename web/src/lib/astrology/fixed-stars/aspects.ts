@@ -69,7 +69,7 @@ export function computeFixedStarAspects(
             aspect_symbol: aspectDef.symbol,
             orb: Math.round(orbe * 1000) / 1000,
             applying: null,
-            orb_status: 'provisional',
+            orb_status: 'provisional / not documented in Vega manual',
           });
           break;
         }

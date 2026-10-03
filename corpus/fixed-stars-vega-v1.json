@@ -7,7 +7,8 @@
     "influence": "Sucesso em assuntos públicos, honra e glória. Temperamento impetuoso que pode levar a decisões precipitadas. Associado ao elemento Júpiter-Saturno.",
     "ra_j2000": 24.4285,
     "dec_j2000": -57.2367,
-    "source": "Robson 1923 p.117; Ebertin 1971 p.14"
+    "source": "Robson 1923 p.117; Ebertin 1971 p.14",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "aldebaran",
@@ -17,7 +18,8 @@
     "influence": "Honra militar, coragem, eloquência, integridade. Uma das quatro Estrelas Reais persas. Sucesso súbito porém com possibilidade de queda por violência.",
     "ra_j2000": 68.98,
     "dec_j2000": 16.5093,
-    "source": "Robson 1923 p.120; Ebertin 1971 p.18; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.120; Ebertin 1971 p.18; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_confirmed"
   },
   {
     "id": "algol",
@@ -27,7 +29,8 @@
     "influence": "A mais maléfica das estrelas fixas. Associada a violência, decapitação, perda, tragédia e males extremos. Requer cautela máxima em qualquer aspecto.",
     "ra_j2000": 47.0422,
     "dec_j2000": 40.9557,
-    "source": "Robson 1923 p.124; Ebertin 1971 p.16; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.124; Ebertin 1971 p.16; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_confirmed"
   },
   {
     "id": "alhena",
@@ -37,7 +40,8 @@
     "influence": "Capacidade artística e de negociação. Habilidade com palavras, diplomacia e senso de missão espiritual. Natureza de Vênus-Mercúrio.",
     "ra_j2000": 99.4279,
     "dec_j2000": 16.3993,
-    "source": "Robson 1923 p.130; Ebertin 1971 p.27"
+    "source": "Robson 1923 p.130; Ebertin 1971 p.27",
+    "status": "vega_probable"
   },
   {
     "id": "alioth",
@@ -47,7 +51,8 @@
     "influence": "Persistência, tenacidade e esforço resoluto. Tendência a ação direta e determinada. Natureza de Marte.",
     "ra_j2000": 193.5073,
     "dec_j2000": 55.9598,
-    "source": "Robson 1923 p.130; Ebertin 1971 p.55"
+    "source": "Robson 1923 p.130; Ebertin 1971 p.55",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "alkaid",
@@ -57,7 +62,8 @@
     "influence": "Destruição, perdas em batalha, desastres. Associada a catástrofes e infortúnio para exércitos. Natureza de Marte.",
     "ra_j2000": 206.8852,
     "dec_j2000": 49.3133,
-    "source": "Robson 1923 p.131; Ebertin 1971 p.57"
+    "source": "Robson 1923 p.131; Ebertin 1971 p.57",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "almach",
@@ -67,7 +73,8 @@
     "influence": "Carisma, popularidade, honras artísticas. Favorece artes, música e vida social. Natureza de Vênus.",
     "ra_j2000": 30.975,
     "dec_j2000": 42.3297,
-    "source": "Robson 1923 p.133; Ebertin 1971 p.10"
+    "source": "Robson 1923 p.133; Ebertin 1971 p.10",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "alnilam",
@@ -77,7 +84,8 @@
     "influence": "Brevidade de fama, honra temporária. Natureza de Júpiter-Saturno. Associada a viagens e busca por conhecimento.",
     "ra_j2000": 84.0534,
     "dec_j2000": -1.2019,
-    "source": "Robson 1923 p.136; Ebertin 1971 p.35"
+    "source": "Robson 1923 p.136; Ebertin 1971 p.35",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "alnair",
@@ -87,7 +95,8 @@
     "influence": "Generosidade, liberalidade, honra e talento para ciências. Perspicácia intelectual e capacidade de liderança.",
     "ra_j2000": 332.0583,
     "dec_j2000": -46.9608,
-    "source": "Robson 1923 p.135; Ebertin 1971 p.65"
+    "source": "Robson 1923 p.135; Ebertin 1971 p.65",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "alphard",
@@ -97,7 +106,8 @@
     "influence": "Paixões violentas, problemas com veneno, vícios. Discernimento moral fraco, natureza dissoluta. Natureza de Saturno-Vênus.",
     "ra_j2000": 141.8967,
     "dec_j2000": -8.6586,
-    "source": "Robson 1923 p.137; Ebertin 1971 p.44; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.137; Ebertin 1971 p.44; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_probable"
   },
   {
     "id": "alphecca",
@@ -107,7 +117,8 @@
     "influence": "Dignidade, honra, graça poética e dons artísticos. Associada à poesia e às artes. Natureza de Vênus-Mercúrio.",
     "ra_j2000": 233.672,
     "dec_j2000": 26.7148,
-    "source": "Robson 1923 p.139; Ebertin 1971 p.58; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.139; Ebertin 1971 p.58; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_probable"
   },
   {
     "id": "alpheratz",
@@ -117,7 +128,8 @@
     "influence": "Honra, popularidade e independência. Velocidade intelectual, capacidade organizacional. Natureza de Júpiter-Vênus.",
     "ra_j2000": 2.0969,
     "dec_j2000": 29.0904,
-    "source": "Robson 1923 p.140; Ebertin 1971 p.10"
+    "source": "Robson 1923 p.140; Ebertin 1971 p.10",
+    "status": "vega_probable"
   },
   {
     "id": "altair",
@@ -127,7 +139,8 @@
     "influence": "Audácia, determinação, ambição e conquistas. Favorece militares e líderes. Natureza de Marte-Júpiter.",
     "ra_j2000": 297.6958,
     "dec_j2000": 8.8683,
-    "source": "Robson 1923 p.142; Ebertin 1971 p.67; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.142; Ebertin 1971 p.67; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_probable"
   },
   {
     "id": "antares",
@@ -137,7 +150,8 @@
     "influence": "Uma das quatro Estrelas Reais. Coragem, audácia e força bruta. Sucesso duradouro mas com perigos de violência e conflito. Natureza de Marte-Júpiter.",
     "ra_j2000": 247.3519,
     "dec_j2000": -26.432,
-    "source": "Robson 1923 p.144; Ebertin 1971 p.60; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.144; Ebertin 1971 p.60; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_confirmed"
   },
   {
     "id": "arcturus",
@@ -147,7 +161,8 @@
     "influence": "Riqueza por esforço próprio, viagens longas, sucesso no exterior. Proteção divina. Natureza de Marte-Júpiter.",
     "ra_j2000": 213.9153,
     "dec_j2000": 19.1822,
-    "source": "Robson 1923 p.147; Ebertin 1971 p.53; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.147; Ebertin 1971 p.53; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_probable"
   },
   {
     "id": "bellatrix",
@@ -157,7 +172,8 @@
     "influence": "Honra militar, sucesso rápido mas sujeito a declínio. Fala precipitada. Associada ao sexo feminino guerreiro. Natureza de Marte-Mercúrio.",
     "ra_j2000": 81.2827,
     "dec_j2000": 6.3497,
-    "source": "Robson 1923 p.150; Ebertin 1971 p.33; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.150; Ebertin 1971 p.33; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_probable"
   },
   {
     "id": "betelgeuse",
@@ -167,7 +183,8 @@
     "influence": "Honra militar, riqueza, sucesso e liderança. Grande fortuna através de esforço. Natureza de Marte-Mercúrio.",
     "ra_j2000": 88.7929,
     "dec_j2000": 7.4071,
-    "source": "Robson 1923 p.150; Ebertin 1971 p.37; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.150; Ebertin 1971 p.37; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_confirmed"
   },
   {
     "id": "canopus",
@@ -177,7 +194,8 @@
     "influence": "Sabedoria, piedade, viagens marítimas e exploração. Favorece navegadores, líderes e filósofos. Natureza de Saturno-Júpiter.",
     "ra_j2000": 95.9879,
     "dec_j2000": -52.6957,
-    "source": "Robson 1923 p.153; Ebertin 1971 p.26; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.153; Ebertin 1971 p.26; Ptolomeu Tetrabiblos I.9",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "capella",
@@ -187,7 +205,8 @@
     "influence": "Honra, riqueza, eminência e nobreza. Favorece assuntos públicos e posições de destaque. Natureza de Marte-Mercúrio.",
     "ra_j2000": 79.1723,
     "dec_j2000": 45.998,
-    "source": "Robson 1923 p.154; Ebertin 1971 p.22; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.154; Ebertin 1971 p.22; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_probable"
   },
   {
     "id": "castor",
@@ -197,7 +216,8 @@
     "influence": "Talento literário e linguístico. Versatilidade intelectual, mas tendência a problemas com armas e violência. Natureza de Mercúrio.",
     "ra_j2000": 113.6495,
     "dec_j2000": 31.8883,
-    "source": "Robson 1923 p.157; Ebertin 1971 p.28; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.157; Ebertin 1971 p.28; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_confirmed"
   },
   {
     "id": "deneb",
@@ -207,7 +227,8 @@
     "influence": "Inteligência, bondade e habilidade científica. Favorece astrólogos, ocultistas e filósofos. Natureza de Vênus-Mercúrio.",
     "ra_j2000": 310.358,
     "dec_j2000": 45.2803,
-    "source": "Robson 1923 p.162; Ebertin 1971 p.63"
+    "source": "Robson 1923 p.162; Ebertin 1971 p.63",
+    "status": "vega_probable"
   },
   {
     "id": "deneb_algedi",
@@ -217,7 +238,8 @@
     "influence": "Fatalidade, perturbações e conflitos mas também proteção divina. Leis e justiça. Natureza de Saturno-Júpiter.",
     "ra_j2000": 326.7602,
     "dec_j2000": -16.1273,
-    "source": "Robson 1923 p.164; Ebertin 1971 p.64"
+    "source": "Robson 1923 p.164; Ebertin 1971 p.64",
+    "status": "vega_probable"
   },
   {
     "id": "denebola",
@@ -227,7 +249,8 @@
     "influence": "Vergonha, desonra, perturbações e perdas. Mas também independência e coragem. Natureza de Saturno-Vênus.",
     "ra_j2000": 177.2649,
     "dec_j2000": 14.572,
-    "source": "Robson 1923 p.163; Ebertin 1971 p.47; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.163; Ebertin 1971 p.47; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_probable"
   },
   {
     "id": "diphda",
@@ -237,7 +260,8 @@
     "influence": "Astúcia, malícia, frouxidão moral. Limitações e perdas por ações precipitadas. Natureza de Saturno.",
     "ra_j2000": 10.8974,
     "dec_j2000": -17.9869,
-    "source": "Robson 1923 p.165; Ebertin 1971 p.14"
+    "source": "Robson 1923 p.165; Ebertin 1971 p.14",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "el_nath",
@@ -247,7 +271,8 @@
     "influence": "Fortuna, eminência e riqueza. Associada ao brilho intelectual e à nobreza de caráter. Natureza de Marte-Mercúrio.",
     "ra_j2000": 81.573,
     "dec_j2000": 28.6074,
-    "source": "Robson 1923 p.168; Ebertin 1971 p.20"
+    "source": "Robson 1923 p.168; Ebertin 1971 p.20",
+    "status": "vega_probable"
   },
   {
     "id": "fomalhaut",
@@ -257,7 +282,8 @@
     "influence": "Uma das quatro Estrelas Reais. Renome, generosidade e poder. Grande êxito com virtude, mas queda se corrompido. Natureza de Vênus-Mercúrio.",
     "ra_j2000": 344.4127,
     "dec_j2000": -29.6223,
-    "source": "Robson 1923 p.170; Ebertin 1971 p.69; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.170; Ebertin 1971 p.69; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_confirmed"
   },
   {
     "id": "hamal",
@@ -267,7 +293,8 @@
     "influence": "Crueldade, brutalidade e independência selvagem. Determinação extrema. Natureza de Marte-Saturno.",
     "ra_j2000": 31.7933,
     "dec_j2000": 23.4625,
-    "source": "Robson 1923 p.176; Ebertin 1971 p.11"
+    "source": "Robson 1923 p.176; Ebertin 1971 p.11",
+    "status": "vega_probable"
   },
   {
     "id": "kaus_australis",
@@ -277,7 +304,8 @@
     "influence": "Habilidade, energia, nobre ambição e eminência em inteligência. Natureza de Júpiter-Marte.",
     "ra_j2000": 276.043,
     "dec_j2000": -34.3846,
-    "source": "Robson 1923 p.178; Ebertin 1971 p.62"
+    "source": "Robson 1923 p.178; Ebertin 1971 p.62",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "markab",
@@ -287,7 +315,8 @@
     "influence": "Honra, riqueza e criatividade. Favorece linguagem e elocução. Vulnerabilidade a ataques e ferimentos. Natureza de Marte-Mercúrio.",
     "ra_j2000": 346.1902,
     "dec_j2000": 15.2053,
-    "source": "Robson 1923 p.182; Ebertin 1971 p.69; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.182; Ebertin 1971 p.69; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_probable"
   },
   {
     "id": "menkar",
@@ -297,7 +326,8 @@
     "influence": "Inimizades de longo prazo, doenças, perturbações e males prolongados. Natureza de Saturno.",
     "ra_j2000": 45.5699,
     "dec_j2000": 4.0897,
-    "source": "Robson 1923 p.183; Ebertin 1971 p.16; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.183; Ebertin 1971 p.16; Ptolomeu Tetrabiblos I.9",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "mimosa",
@@ -307,7 +337,8 @@
     "influence": "Intuição profunda, dons religiosos e místicos. Favorece ciências ocultas e espiritualidade. Natureza de Júpiter.",
     "ra_j2000": 191.9303,
     "dec_j2000": -59.6888,
-    "source": "Robson 1923 p.185; Ebertin 1971 p.56"
+    "source": "Robson 1923 p.185; Ebertin 1971 p.56",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "mirach",
@@ -317,7 +348,8 @@
     "influence": "Beleza, harmonia, bondade e generosidade. Favorece casamento e relacionamentos felizes. Natureza de Vênus.",
     "ra_j2000": 17.433,
     "dec_j2000": 35.6204,
-    "source": "Robson 1923 p.186; Ebertin 1971 p.10"
+    "source": "Robson 1923 p.186; Ebertin 1971 p.10",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "mirfak",
@@ -327,7 +359,8 @@
     "influence": "Energia, audácia, ambição e persistência. Favorece heróis e líderes militares. Natureza de Júpiter-Saturno.",
     "ra_j2000": 51.0808,
     "dec_j2000": 49.8612,
-    "source": "Robson 1923 p.187; Ebertin 1971 p.17"
+    "source": "Robson 1923 p.187; Ebertin 1971 p.17",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "mizar",
@@ -337,7 +370,8 @@
     "influence": "Energias destrutivas, violência e explosões. Associada a catástrofes e eventos dramáticos. Natureza de Marte.",
     "ra_j2000": 200.9814,
     "dec_j2000": 54.9254,
-    "source": "Robson 1923 p.188; Ebertin 1971 p.55"
+    "source": "Robson 1923 p.188; Ebertin 1971 p.55",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "nunki",
@@ -347,7 +381,8 @@
     "influence": "Honra e habilidade em ciências ocultas e religiosas. Favorece filósofos e estudiosos do sagrado. Natureza de Júpiter-Mercúrio.",
     "ra_j2000": 283.8164,
     "dec_j2000": -26.2967,
-    "source": "Robson 1923 p.189; Ebertin 1971 p.62"
+    "source": "Robson 1923 p.189; Ebertin 1971 p.62",
+    "status": "vega_probable"
   },
   {
     "id": "pollux",
@@ -357,7 +392,8 @@
     "influence": "Audácia, crueldade e violência — o gêmeo maligno. Associada a ferimentos e ataques. Natureza de Marte.",
     "ra_j2000": 116.329,
     "dec_j2000": 28.0262,
-    "source": "Robson 1923 p.193; Ebertin 1971 p.29; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.193; Ebertin 1971 p.29; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_confirmed"
   },
   {
     "id": "procyon",
@@ -367,7 +403,8 @@
     "influence": "Sucesso e fama repentinos, mas transitórios. Tendência a arrogância e a conflitos. Natureza de Mercúrio-Marte.",
     "ra_j2000": 114.8255,
     "dec_j2000": 5.225,
-    "source": "Robson 1923 p.195; Ebertin 1971 p.29; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.195; Ebertin 1971 p.29; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_probable"
   },
   {
     "id": "rasalgethi",
@@ -377,7 +414,8 @@
     "influence": "Caráter imprevisível, bom e mau humor alternados. Impudência e volubilidade. Natureza de Marte-Vênus.",
     "ra_j2000": 258.6618,
     "dec_j2000": 14.39,
-    "source": "Robson 1923 p.198; Ebertin 1971 p.59; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.198; Ebertin 1971 p.59; Ptolomeu Tetrabiblos I.9",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "rasalhague",
@@ -387,7 +425,8 @@
     "influence": "Desejo de conhecimento médico e oculto. Tendência a excessos e vícios. Natureza de Saturno-Vênus.",
     "ra_j2000": 263.7337,
     "dec_j2000": 12.56,
-    "source": "Robson 1923 p.198; Ebertin 1971 p.60; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.198; Ebertin 1971 p.60; Ptolomeu Tetrabiblos I.9",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "regulus",
@@ -397,7 +436,8 @@
     "influence": "A mais poderosa das quatro Estrelas Reais. Glória, riqueza, ardor e magnanimidade. Sucesso duradouro com virtude — fracasso se corrompido. Natureza de Marte-Júpiter.",
     "ra_j2000": 152.093,
     "dec_j2000": 11.9672,
-    "source": "Robson 1923 p.199; Ebertin 1971 p.46; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.199; Ebertin 1971 p.46; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_confirmed"
   },
   {
     "id": "rigel",
@@ -407,7 +447,8 @@
     "influence": "Glória, riqueza e honra permanente. Favorece militares, engenheiros e arquitetos. Natureza de Júpiter-Saturno.",
     "ra_j2000": 78.6345,
     "dec_j2000": -8.2016,
-    "source": "Robson 1923 p.201; Ebertin 1971 p.32; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.201; Ebertin 1971 p.32; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_confirmed"
   },
   {
     "id": "sabik",
@@ -417,7 +458,8 @@
     "influence": "Prodigalidade, desonestidade e instabilidade moral. Porém com capacidade medicinal e oculta. Natureza de Saturno-Vênus.",
     "ra_j2000": 257.5944,
     "dec_j2000": -15.7249,
-    "source": "Robson 1923 p.203; Ebertin 1971 p.59; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.203; Ebertin 1971 p.59; Ptolomeu Tetrabiblos I.9",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "schedar",
@@ -427,7 +469,8 @@
     "influence": "Energia, determinação e autoridade. Capacidade de liderança e comando. Natureza de Saturno-Vênus.",
     "ra_j2000": 10.1268,
     "dec_j2000": 56.5373,
-    "source": "Robson 1923 p.204; Ebertin 1971 p.13"
+    "source": "Robson 1923 p.204; Ebertin 1971 p.13",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "sirius",
@@ -437,7 +480,8 @@
     "influence": "A estrela mais brilhante do céu. Glória, fidelidade, ardor e distinção imortais. Favorece governantes e comandantes. Natureza de Júpiter-Marte.",
     "ra_j2000": 101.2872,
     "dec_j2000": -16.7161,
-    "source": "Robson 1923 p.208; Ebertin 1971 p.25; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.208; Ebertin 1971 p.25; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_confirmed"
   },
   {
     "id": "spica",
@@ -447,7 +491,8 @@
     "influence": "Sucesso, fama, habilidades artísticas e científicas. Uma das mais beneficentes estrelas. Natureza de Vênus-Marte.",
     "ra_j2000": 201.2983,
     "dec_j2000": -11.1614,
-    "source": "Robson 1923 p.210; Ebertin 1971 p.56; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.210; Ebertin 1971 p.56; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_confirmed"
   },
   {
     "id": "toliman",
@@ -457,7 +502,8 @@
     "influence": "Violência, crueldade e tendências bestiais. Porém com grande capacidade de cura e transmissão de conhecimento. Natureza de Vênus-Júpiter.",
     "ra_j2000": 219.9021,
     "dec_j2000": -60.834,
-    "source": "Robson 1923 p.213; Ebertin 1971 p.57"
+    "source": "Robson 1923 p.213; Ebertin 1971 p.57",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "unukalhai",
@@ -467,7 +513,8 @@
     "influence": "Imoralidade, devassidão, vícios e instabilidade. Associada a escândalos e quedas. Natureza de Saturno-Marte.",
     "ra_j2000": 236.0672,
     "dec_j2000": 6.4257,
-    "source": "Robson 1923 p.214; Ebertin 1971 p.58; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.214; Ebertin 1971 p.58; Ptolomeu Tetrabiblos I.9",
+    "status": "reconstructed_from_vega_sources"
   },
   {
     "id": "vega",
@@ -477,7 +524,8 @@
     "influence": "Bondade, idealismo, esperança e bênçãos. Dons musicais e poéticos. Uma das mais benevolentes estrelas. Natureza de Vênus-Mercúrio.",
     "ra_j2000": 279.2347,
     "dec_j2000": 38.7837,
-    "source": "Robson 1923 p.215; Ebertin 1971 p.63; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.215; Ebertin 1971 p.63; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_confirmed"
   },
   {
     "id": "zubenelgenubi",
@@ -487,7 +535,8 @@
     "influence": "Natureza malévola, traições e conspirações. Associada a veneno e más ações. Mas também com potencial para dedicação abnegada. Natureza de Saturno-Marte.",
     "ra_j2000": 222.7197,
     "dec_j2000": -16.0417,
-    "source": "Robson 1923 p.218; Ebertin 1971 p.57; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.218; Ebertin 1971 p.57; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_probable"
   },
   {
     "id": "zubeneschamali",
@@ -497,6 +546,7 @@
     "influence": "Riqueza, generosidade e sucesso intelectual. A mais benévola de Libra. Associada a justiça e equilíbrio. Natureza de Júpiter-Mercúrio.",
     "ra_j2000": 229.2518,
     "dec_j2000": -9.3829,
-    "source": "Robson 1923 p.219; Ebertin 1971 p.58; Ptolomeu Tetrabiblos I.9"
+    "source": "Robson 1923 p.219; Ebertin 1971 p.58; Ptolomeu Tetrabiblos I.9",
+    "status": "vega_probable"
   }
 ]

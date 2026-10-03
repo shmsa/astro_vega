@@ -33,6 +33,7 @@ export function computeFixedStars(
       constellation: entry.constellation,
       influence: entry.influence,
       source: entry.source,
+      status: entry.status,
       longitude,
       latitude,
       longitude_zodiac: formatZodiacPrecise(longitude, { portuguese: true }),
@@ -49,6 +50,7 @@ export function computeFixedStars(
     jd_ut,
     epoch_year: Math.round(jdToEpochYear(jd_ut) * 100) / 100,
     module_version: '1.0.0',
+    calculation_method: 'Vega-style IAU1976 reconstruction',
     config,
   };
 }

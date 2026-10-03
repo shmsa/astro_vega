@@ -3,6 +3,12 @@
  * Vega 7 Revival: Estrelas Fixas com precessão IAU 1976
  */
 
+/** Proveniência histórica da estrela em relação ao Vega 7 */
+export type StarProvenanceStatus =
+  | 'vega_confirmed'
+  | 'vega_probable'
+  | 'reconstructed_from_vega_sources';
+
 /** Entrada do catálogo JSON — coordenadas J2000.0 */
 export interface FixedStarCatalogEntry {
   id: string;
@@ -16,6 +22,7 @@ export interface FixedStarCatalogEntry {
   /** Declinação em graus decimais, J2000.0 */
   dec_j2000: number;
   source: string;
+  status: StarProvenanceStatus;
 }
 
 /** Posição calculada para a data do mapa (após precessão) */
@@ -25,6 +32,7 @@ export interface FixedStarPosition {
   constellation: string;
   influence: string;
   source: string;
+  status: StarProvenanceStatus;
   /** Longitude eclíptica em graus decimais [0, 360) */
   longitude: number;
   /** Latitude eclíptica em graus decimais */
@@ -51,8 +59,8 @@ export interface FixedStarAspect {
   orb: number;
   /** Sempre null para estrelas fixas — applying/separating não calculado */
   applying: null;
-  /** Status do orbe: "provisional" pois manual do Vega 7 não confirma valor */
-  orb_status: 'provisional';
+  /** Status do orbe: provisório / não documentado no manual Vega */
+  orb_status: 'provisional / not documented in Vega manual';
 }
 
 /** Configuração do módulo de estrelas fixas */
@@ -87,9 +95,12 @@ export interface FixedStarsResult {
   epoch_year: number;
   /** Versão do módulo */
   module_version: string;
+  /** Método de cálculo oficial: Vega-style IAU1976 reconstruction (NÃO Vega exact) */
+  calculation_method: 'Vega-style IAU1976 reconstruction';
   /** Configuração de orbes utilizada */
   config: FixedStarsConfig;
 }
+
 
 /** Planetas incluídos na análise de aspectos (conforme Vega 7) */
 export const FIXED_STARS_PLANETS = [
